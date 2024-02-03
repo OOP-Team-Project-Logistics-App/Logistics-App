@@ -2,6 +2,19 @@ class CreateDeliveryRouteCommand:
     id = 1
     pass #id += 1
 
+    def start_location(self):
+        pass
+
+    def departure_time(self):
+        #first_location of delivery_route has departure_time, departure time cannot be in the past
+        pass
+
+
+    def expected_arrival_time(self):
+        #all locations after start_location have expected_arrival_time, arrival time cannot force the average speed between locations to exceed 87km/h
+        pass
+
+
     def delivery_route(self):
         #at least 2 locations(start and end location)
         pass
