@@ -19,10 +19,6 @@ class Route:
         #assign truck to the route
         pass
 
-    def expected_arrival_time(self):
-        #all locations after start_location have expected_arrival_time, arrival time cannot force the average speed between locations to exceed 87km/h
-        pass
-
     def assign_package(self, package):
         #assign package on the certain route
         pass
