@@ -1,5 +1,6 @@
 class CreateDeliveryPackageCommand:
-    pass
+    id = 1
+    pass #id += 1
 
     def set_start_location(self):
         pass
@@ -12,5 +13,5 @@ class CreateDeliveryPackageCommand:
         pass
 
     def __str__(self):
-        "- Brisbane (Oct 10th 06:00h) → Sydney (Oct 10th 20:00h) → Melbourne (Oct 11th 18:00h) "
+        #"{start_location} → {end_location}"
         pass
