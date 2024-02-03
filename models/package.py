@@ -1,5 +1,5 @@
 class Package:
-    def __init__(self, id, start_location, end_location):
+    def __init__(self, id, start_location, end_location, contact_info):
         self.id = id
         self.start_location = start_location
         self.end_location = end_location
