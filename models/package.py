@@ -3,7 +3,6 @@ class Package:
         self.id = id
         self.start_location = start_location
         self.end_location = end_location
-        pass
 
     def set_start_location(self):
         pass
