@@ -19,10 +19,6 @@ class Route:
         #assign truck to the route
         pass
 
-    def assign_package(self, package):
-        #assign package on the certain route
-        pass
-
     def route_info(self):
         #f-string info
         pass

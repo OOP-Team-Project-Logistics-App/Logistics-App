@@ -11,6 +11,10 @@ class Package:
     def set_end_location(self):
         pass
 
+    def assign_package(self, package):
+        #assign package on the certain route
+        pass
+
     def package_weight(self):
         # Capacity must be between lower than 42000kg
         pass
