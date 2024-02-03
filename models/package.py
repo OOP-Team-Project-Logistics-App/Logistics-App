@@ -12,7 +12,7 @@ class Package:
         pass
 
     def package_weight(self):
-        # Capacity must be between 26000kg and 42000kg
+        # Capacity must be between lower than 42000kg
         pass
 
     def contact_info(self):
