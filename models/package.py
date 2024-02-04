@@ -1,4 +1,6 @@
 from models.scania import Scania
+from models.man import Man
+from models.actros import Actros
 
 
 class Package:
@@ -29,12 +31,11 @@ class Package:
 
     @property
     def weight(self):
-        # Capacity must be between lower than 42000kg
         return self.weight
     
     @weight.setter
     def weight(self, value):
-        if self.weight <= 42000:
+        if self.weight <= self.truck.capacity:
             self.weight = value
         raise ValueError("Package exceeds the truck's weight limit.")
 

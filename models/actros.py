@@ -1,4 +1,4 @@
-from models.vehicle import Truck
+from models.truck import Truck
 
 
 class Actros(Truck):
