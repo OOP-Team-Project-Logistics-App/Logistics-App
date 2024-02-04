@@ -24,4 +24,3 @@ class ApplicationData:
 
     def package_info(self, package_id):
         pass
-

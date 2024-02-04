@@ -52,6 +52,4 @@ class Route:
         self._assigned_truck.append(truck.id)
 
     def route_info(self):
-        #temporary f-string
-        return f"Route {self.id}: {self.start_location} at {self.start_time} with truck {self.assigned_truck}."
-
+        return f"Route {self.id}: {' -> '.join(self._locations)} created."

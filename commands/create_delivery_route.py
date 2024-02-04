@@ -16,4 +16,4 @@ class CreateDeliveryRouteCommand:
             new_route.add_location(location)
         self.app_data.add_route(new_route)
         
-        return f"Route {' -> '.join(self.params)} created"
+        return new_route.route_info()
