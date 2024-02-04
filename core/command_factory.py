@@ -11,7 +11,7 @@ class CommandFactory:
     def create(self, input_line):
         cmd, *params = input_line.split()
 
-        if cmd.lower() == "cretedeliveryroute":
+        if cmd.lower() == "createdeliveryroute":
             return CreateDeliveryRouteCommand(params, self._app_data)
         if cmd.lower() == "createdevliverypackage":
             return CreateDeliveryPackageCommand(params, self._app_data)
