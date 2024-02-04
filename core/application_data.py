@@ -11,7 +11,8 @@ class ApplicationData:
         self._delivery_routes: list[Route] = []
         self._delivery_packages: list[Package] = []
 
-    def add_route(self, route):
+    def add_route(self, id, locations):
+        route = Route(id, locations, start_time=0)
         self._delivery_routes.append(route)
 
     def add_package(self, package):

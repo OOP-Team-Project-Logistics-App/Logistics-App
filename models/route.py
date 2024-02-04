@@ -2,14 +2,12 @@ from models.constants.distances import Distance
 
 
 class Route:
-    id = 0
 
-    def __init__(self, start_location, start_time):
-        Route.id += 1
-        self._id = Route.id
-        self._start_location = start_location
+    def __init__(self, id,  locations, start_time):
+        self._id = id
+        self._start_location = locations[0]
         self._start_time = start_time
-        self.locations = {start_location: start_time}
+        self.locations = locations
         self._assigned_truck = []
     
     @property
@@ -50,3 +48,4 @@ class Route:
     def route_info(self):
         #temporary f-string
         return f"Route {self.id}: {self.start_location} at {self.start_time} with truck {self.assigned_truck}."
+
