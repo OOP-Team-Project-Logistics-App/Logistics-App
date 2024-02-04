@@ -1,9 +1,21 @@
+from models.scania import Scania
+
+
 class Package:
     def __init__(self, id: int, start_location: str, end_location: str, weight: float, contact_info: str):
-        self.id = id
-        self.start_location = start_location
+        self._id = id
+        self._start_location = start_location
         self.end_location = end_location
+        self.weight = weight
         self.contact_info = contact_info
+
+    @property
+    def id(self):
+        return self._id
+    
+    @property
+    def start_location(self):
+        return self._start_location
 
     def set_start_location(self):
         pass
@@ -15,13 +27,20 @@ class Package:
         #assign package on the certain route
         pass
 
-    def package_weight(self):
+    @property
+    def weight(self):
         # Capacity must be between lower than 42000kg
-        pass
+        return self.weight
+    
+    @weight.setter
+    def weight(self, value):
+        if self.weight <= 42000:
+            self.weight = value
+        raise ValueError("Package exceeds the truck's weight limit.")
+
 
     def get_contact_info(self):
         pass
 
     def __str__(self):
-        # "{start_location} → {end_location}"
-        pass
+        return f"{self._start_location} -> {self.end_location}"
