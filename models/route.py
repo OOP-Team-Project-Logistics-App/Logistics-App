@@ -9,7 +9,7 @@ class Route:
         self._id = Route.id
         self._start_location = start_location
         self._start_time = start_time
-        self._locations = [(start_location, start_time)]
+        self.locations = {start_location: start_time}
         self._assigned_truck = []
     
     @property
@@ -25,15 +25,13 @@ class Route:
         return self._start_time
     
     @property
-    def locations(self):
-        return tuple(self._locations)
-    
-    @property
     def assigned_truck(self):
         return tuple(self._assigned_truck)
 
-    def departure_time(self):
-        return self.locations[0][1]
+    def add_location(self, location, time):
+        if location not in self.locations:
+            self.locations[location] = time
+        raise ValueError("Location is already part of the route.")
 
     def total_distance_of_route(self):
         total_distance = 0
