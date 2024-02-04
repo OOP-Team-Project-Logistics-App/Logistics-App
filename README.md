@@ -9,5 +9,5 @@ Teamwork in Python OOP Module in Telerik Academy
 |       Name            |                   Github Username                 |
 |:---------------------:|:-------------------------------------------------:|
 | Valentin Penev        | [FalseBeliefs](https://github.com/FalseBeliefs)   |
-| Konstantin Ivanov     | [dnrubinart](https://github.comdnrubinart)        |
+| Konstantin Ivanov     | [dnrubinart](https://github.com/dnrubinart)       |
 | Radostin Mihaylov     | [radoooo11](https://github.com/radoooo11)         |
