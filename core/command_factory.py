@@ -1,6 +1,21 @@
-class CommandFactory:
-    def __init__(self):
-        pass
+from commands.create_delivery_route import CreateDeliveryRouteCommand
+from commands.create_delivery_package import CreateDeliveryPackageCommand
+from commands.search_route import SearchRouteCommand
+from commands.view_information import ViewInformationCommand
 
-    def create(self):
-        pass
+class CommandFactory:
+    def __init__(self, data):
+        self._app_data = data
+
+
+    def create(self, input_line):
+        cmd, *params = input_line.split()
+
+        if cmd.lower() == "cretedeliveryroute":
+            return CreateDeliveryRouteCommand(params, self._app_data)
+        if cmd.lower() == "createdevliverypackage":
+            return CreateDeliveryPackageCommand(params, self._app_data)
+        if cmd.lower() == "searchroute":
+            return SearchRouteCommand(params, self._app_data)
+        if cmd.lower() == "viewinformation":
+            return ViewInformationCommand(params, self._app_data)

@@ -1,2 +1,2 @@
-class SearchRoute:
+class SearchRouteCommand:
     pass

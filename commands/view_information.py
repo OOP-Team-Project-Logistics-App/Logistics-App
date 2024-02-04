@@ -1,2 +1,2 @@
-class ViewInformation:
+class ViewInformationCommand:
     pass
