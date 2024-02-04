@@ -1,7 +1,9 @@
 class Route:
-
     def __init__(self, id: int, start_location, start_time):
-        pass
+        #
+        #
+        #
+        self.locations = []
 
     def departure_time(self):
         #first_location of delivery_route has departure_time, departure time cannot be in the past

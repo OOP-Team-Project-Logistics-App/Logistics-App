@@ -1,8 +1,9 @@
 class Package:
-    def __init__(self, id, start_location, end_location, contact_info):
+    def __init__(self, id: int, start_location: str, end_location: str, weight: float, contact_info: str):
         self.id = id
         self.start_location = start_location
         self.end_location = end_location
+        self.contact_info = contact_info
 
     def set_start_location(self):
         pass
@@ -18,7 +19,7 @@ class Package:
         # Capacity must be between lower than 42000kg
         pass
 
-    def contact_info(self):
+    def get_contact_info(self):
         pass
 
     def __str__(self):

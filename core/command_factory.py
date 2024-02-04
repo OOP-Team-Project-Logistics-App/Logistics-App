@@ -1,5 +1,4 @@
 class CommandFactory:
-
     def __init__(self):
         pass
 
