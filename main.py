@@ -10,3 +10,5 @@ engine = Engine(cmd_factory)
 
 engine.start()
 
+#createdeliveryroute Sydney 10:10:01 Adelaide 10:10:21 Perth 10:12:21
+#createdeliveryroute Sydney 10:10:01 Adelaide 10:10:11 Perth 10:12:21 throws error

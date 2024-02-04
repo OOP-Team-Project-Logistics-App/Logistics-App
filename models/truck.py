@@ -33,4 +33,4 @@ trucks = [Truck(1001 + i, "Scania", 42000, 8000) for i in range(10)] + \
               [Truck(1026 + i, "Actros", 26000, 13000) for i in range(15)]
 truck_dict = {truck.id: truck for truck in trucks}
 
-Truck.print_trucks(truck_dict)
+#Truck.print_trucks(truck_dict)
