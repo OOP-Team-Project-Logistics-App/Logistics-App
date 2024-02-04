@@ -1,14 +1,12 @@
 class Route:
     def __init__(self, id: int, start_location, start_time):
-        #
-        #
-        #
-        self.locations = []
+        self.id = id
+        self.start_location
+        self.start_time
+        self.locations = [(start_location, start_time)]
 
     def departure_time(self):
-        #first_location of delivery_route has departure_time, departure time cannot be in the past
-        pass
-
+        return self.locations[0][1]
 
     def total_distance_of_route(self):
         #total distance must be shorter than 13000km, truck assigned based on route distance and availability
@@ -19,5 +17,5 @@ class Route:
         pass
 
     def route_info(self):
-        #f-string info
-        pass
+        #temporary f-string
+        return f"Route {self.id}: {self.start_location} at {self.start_time} with truck {self.truck.id}."

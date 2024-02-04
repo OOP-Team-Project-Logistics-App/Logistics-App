@@ -1,6 +1,6 @@
-from models.vehicle import Vehicle
+from models.vehicle import Truck
 
 
-class TruckMedium(Vehicle):
+class Man(Truck):
     def __init__(self, id: int, name: str, capacity: int, max_range: int):
         super().__init__(id, name, capacity, max_range)
