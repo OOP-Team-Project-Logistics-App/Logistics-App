@@ -1,45 +1,19 @@
 from datetime import datetime
 from models.constants.distances import Distance
 from core.application_data import ApplicationData
+from models.route import Route
+
 
 class CreateDeliveryRouteCommand:
-    id = 1
-
     def __init__(self, params, app_data: ApplicationData):
         self.params = params
         self.app_data = app_data
 
-
     def execute(self):
-        locations = []
-    #createdeliveryroute melbourne sydney perth
-        for loc in self.params:
-            locations.append(loc)
-        print(locations)
-        print(self.id)
-        self.app_data.add_route(self.id, locations)
-        CreateDeliveryRouteCommand.id += 1
-
-
-
-
-
-
-
-
-        # start_city = (next(iter(route_times)))
-        # for key,value in route_times.items():
-        #     start_city_time = route_times[start_city]
-        #     distance_between_cities = Distance.find_distance(start_city, key)
-        #     travel_time_between_cities = value - start_city_time
-        #     days = travel_time_between_cities.days
-        #     seconds = travel_time_between_cities.seconds
-        #     travel_time_in_hours_only = (days * 24) + (seconds // 3600)
-        #     if travel_time_in_hours_only > 0:
-        #         average_speed = distance_between_cities/travel_time_in_hours_only
-        #         if average_speed > 87:
-        #             raise ValueError(f"Travel time between {start_city} and {key} must be longer")
-        #     start_city = key
-        #maximum average speed = 87km/h
-
-
+        route_id = Route.id_counter()
+        new_route = Route(route_id, self.params[0])
+        for location in self.params[1:]:
+            new_route.add_location(location)
+        self.app_data.add_route(new_route)
+        
+        return f"Route {' -> '.join(self.params)} created"

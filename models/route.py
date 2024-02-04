@@ -2,13 +2,18 @@ from models.constants.distances import Distance
 
 
 class Route:
+    id_count = 0
 
-    def __init__(self, id,  locations, start_time):
+    def __init__(self, id, start_location):
         self._id = id
-        self._start_location = locations[0]
-        self._start_time = start_time
-        self.locations = locations
+        self._start_location = start_location
+        self._locations = []
         self._assigned_truck = []
+
+    @classmethod
+    def id_counter(cls):
+        cls.id_count += 1
+        return cls.id_count
     
     @property
     def id(self):
@@ -19,17 +24,18 @@ class Route:
         return self._start_location
     
     @property 
-    def start_time(self):
-        return self._start_time
+    def locations(self):
+        return tuple(self._locations)
     
     @property
     def assigned_truck(self):
         return tuple(self._assigned_truck)
 
-    def add_location(self, location, time):
+    def add_location(self, location):
         if location not in self.locations:
-            self.locations[location] = time
-        raise ValueError("Location is already part of the route.")
+            self._locations.append(location)
+        else:
+            raise ValueError("Location is already part of the route.")
 
     def total_distance_of_route(self):
         total_distance = 0

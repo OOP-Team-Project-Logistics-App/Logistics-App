@@ -1,8 +1,3 @@
-from models.scania import Scania
-from models.man import Man
-from models.actros import Actros
-
-
 class Package:
     def __init__(self, id: int, start_location: str, end_location: str, weight: float, contact_info: str):
         self._id = id
@@ -38,7 +33,6 @@ class Package:
         if self.weight <= self.truck.capacity:
             self.weight = value
         raise ValueError("Package exceeds the truck's weight limit.")
-
 
     def get_contact_info(self):
         pass
