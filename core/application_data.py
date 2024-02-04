@@ -1,5 +1,9 @@
 from models.route import Route
 from models.package import Package
+from models.truck import Truck
+from models.scania import Scania
+from models.man import Man
+from models.actros import Actros
 
 
 class ApplicationData:
@@ -24,3 +28,4 @@ class ApplicationData:
 
     def package_info(self, package_id):
         pass
+
