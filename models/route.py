@@ -39,11 +39,10 @@ class Route:
 
     def total_distance_of_route(self):
         total_distance = 0
-        for i in range(len(self.locations) - 1):
-            if total_distance <= 13000:
-                departure_city, _ = self.locations[i]
-                arrival_city, _ = self.locations[i + 1]
-                total_distance += Distance.find_distance(departure_city, arrival_city)
+        for i in range(1, len(self._locations)):
+            departure_city = self._locations[i-1]
+            arrival_city = self._locations[i]
+            total_distance += Distance.find_distance(departure_city, arrival_city)
         return total_distance
 
     def assign_truck(self, truck):

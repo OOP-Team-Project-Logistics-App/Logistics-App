@@ -1,9 +1,7 @@
 class Truck:
-    def __init__(self, id: int, name: str, capacity: int, max_range: float):
+    def __init__(self, id: int):
         self._id = id
-        self._name = name
-        self._capacity = capacity
-        self._max_range = max_range
+
 
     @property
     def id(self):
