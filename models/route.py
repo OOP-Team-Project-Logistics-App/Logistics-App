@@ -50,6 +50,10 @@ class Route:
         if not truck.max_range > self.total_distance_of_route():
             raise ValueError("This truck cannot cover this route.")
         self._assigned_truck.append(truck.id)
-
+    
     def route_info(self):
-        return f"Route {self.id}: {' -> '.join(self._locations)} created."
+        route_str = f"Route {self.id}: "
+        for city, time in self._locations:
+            formatted_time = time.strftime("%b %d %H:%M")
+            route_str += f"{city} ({formatted_time}) → "
+        return route_str.rstrip(" → ") + " created."

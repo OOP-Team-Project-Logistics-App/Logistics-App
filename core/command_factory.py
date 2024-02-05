@@ -1,7 +1,9 @@
+from commands.add_location import AddLocationCommand
 from commands.create_delivery_route import CreateDeliveryRouteCommand
 from commands.create_delivery_package import CreateDeliveryPackageCommand
 from commands.search_route import SearchRouteCommand
 from commands.view_information import ViewInformationCommand
+from commands.view_route import ViewRouteCommand
 from errors.invalid_command import InvalidCommand
 
 
@@ -20,5 +22,9 @@ class CommandFactory:
             return SearchRouteCommand(params, self._app_data)
         if cmd.lower() == "viewinformation":
             return ViewInformationCommand(params, self._app_data)
+        if cmd.lower() == "addlocation":
+            return AddLocationCommand(params, self._app_data)
+        if cmd.lower() == "viewroute":
+            return ViewRouteCommand(params, self._app_data)
         
         raise InvalidCommand(cmd)
