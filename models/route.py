@@ -4,11 +4,10 @@ from models.constants.distances import Distance
 class Route:
     id_count = 0
 
-    def __init__(self, id, start_location):
-        self._id = id
-        self._start_location = start_location
-        self._locations = []
-        self._assigned_truck = []
+    def __init__(self, route_id, locations):
+        self._id = route_id
+        self._locations = locations
+        self._packages = []
 
     @classmethod
     def id_counter(cls):
@@ -20,39 +19,30 @@ class Route:
         return self._id
     
     @property
-    def start_location(self):
-        return self._start_location
-    
-    @property 
     def locations(self):
         return tuple(self._locations)
     
-    @property
-    def assigned_truck(self):
-        return tuple(self._assigned_truck)
-
+    @property 
+    def packages(self):
+        return tuple(self._packages)
+    
     def add_location(self, location):
-        if location not in self.locations:
-            self._locations.append(location)
-        else:
-            raise ValueError("Location is already part of the route.")
+        self._locations.append(location)
+        
+    def add_package(self, package):
+        self._packages.append(package)
 
-    def total_distance_of_route(self):
-        total_distance = 0
-        for i in range(1, len(self._locations)):
-            departure_city = self._locations[i-1]
-            arrival_city = self._locations[i]
-            total_distance += Distance.find_distance(departure_city, arrival_city)
-        return total_distance
+    def total_weight(self):
+        return sum(package.weight for package in self.packages)
+
+    def total_distance(self):
+        total = 0
+        for i in range(len(self.locations) - 1):
+            total += Distance.find_distance(self.locations[i], self.locations[i + 1])
+        return total
 
     def assign_truck(self, truck):
-        if not truck.max_range > self.total_distance_of_route():
-            raise ValueError("This truck cannot cover this route.")
-        self._assigned_truck.append(truck.id)
-    
-    def route_info(self):
-        route_str = f"Route {self.id}: "
-        for city, time in self._locations:
-            formatted_time = time.strftime("%b %d %H:%M")
-            route_str += f"{city} ({formatted_time}) → "
-        return route_str.rstrip(" → ") + " created."
+        self.truck = truck
+
+    def __str__(self):
+        return f"Route {self._id} {' -> '.join(self._locations)} created and truck with id {self.truck.id} is assigned."

@@ -21,7 +21,6 @@ class Package:
         pass
 
     def assign_package(self, package):
-        #assign package on the certain route
         pass
 
     @property
