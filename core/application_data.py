@@ -5,10 +5,10 @@ from models.truck import Truck
 
 class ApplicationData:
     def __init__(self):
-        self._delivery_routes = []
-        self._trucks = []
+        self._delivery_routes: list[Route] = []
+        self._trucks: list[Truck] = []
 
-    def add_route(self, route_id, route):
+    def add_route(self, route_id: int, route: Route):
         self._delivery_routes.append((route_id, route))
 
     def initialize_trucks(self):
@@ -19,13 +19,13 @@ class ApplicationData:
         for id in range(1026, 1041):
             self._trucks.append(Truck(id, "Actros", 26000, 13000))
 
-    def find_suitable_truck(self, route):
+    def find_suitable_truck(self, route: Route):
         for idx, truck in enumerate(self._trucks):
             if truck.max_range >= route.total_distance():
                 return self._trucks.pop(idx)
         raise ValueError("There is no suitable truck for this route.")
 
-    def get_route(self, route_id):
+    def get_route(self, route_id: int):
         for id, route in self._delivery_routes:
             if id == route_id:
                 return route
@@ -34,8 +34,8 @@ class ApplicationData:
     def assign_package_to_route(self, package: Package, route: Route):
         pass
 
-    def route_info(self, route_id):
+    def route_info(self, route_id: int):
         pass
 
-    def package_info(self, package_id):
+    def package_info(self, package_id: int):
         pass
