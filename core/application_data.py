@@ -40,7 +40,7 @@ class ApplicationData:
 
     def get_route(self, route_id: int):
         for id, route in self._delivery_routes:
-            if int(id) == route_id:
+            if id == route_id:
                 return route
         raise ValueError("Route with this id was not found.")
 
