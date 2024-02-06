@@ -4,8 +4,8 @@ from models.constants.distances import Distance
 class Route:
     id_count = 0
 
-    def __init__(self, route_id: int, locations: list[str]):
-        self._id = route_id
+    def __init__(self, locations: list[str]):
+        self._id = self.id_counter()
         self._locations = locations
         self._packages = []
 

@@ -21,8 +21,8 @@ class ApplicationData:
     def trucks(self):
         return tuple(self._trucks)
 
-    def add_route(self, route_id: int, route: Route):
-        self._delivery_routes.append((route_id, route))
+    def add_route(self, route):
+        self._delivery_routes.append(route)
 
     def initialize_trucks(self):
         self._trucks.extend([Truck(id, "Scania", 42000, 8000) for id in range(1001, 1011)])
@@ -36,8 +36,8 @@ class ApplicationData:
         raise ValueError("There is no suitable truck for this route.")
 
     def get_route(self, route_id: int):
-        for id, route in self._delivery_routes:
-            if id == route_id:
+        for route in self._delivery_routes:
+            if route.id == int(route_id):
                 return route
         raise ValueError("Route with this id was not found.")
     
