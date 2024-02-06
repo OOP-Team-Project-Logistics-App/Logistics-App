@@ -25,11 +25,11 @@ class ApplicationData:
         self._delivery_routes.append((route_id, route))
 
     def initialize_trucks(self):
-        for id in range(1001, 1011):
+        for id in range(1001, 1010):
             self._trucks.append(Truck(id, "Scania", 42000, 8000))
-        for id in range(1011, 1026):
+        for id in range(1011, 1025):
             self._trucks.append(Truck(id, "Man", 37000, 10000))
-        for id in range(1026, 1041):
+        for id in range(1026, 1040):
             self._trucks.append(Truck(id, "Actros", 26000, 13000))
 
     def find_suitable_truck(self, route: Route):
@@ -48,6 +48,36 @@ class ApplicationData:
         if package._start_location and package._end_location in route:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
+
+    def show_available_trucks(self):
+        print("Available trucks:")
+        free_scania = 0
+        free_man = 0
+        free_actros = 0
+        for truck in self._trucks:
+            if truck.id <= 1010:
+                free_scania += 1
+            if truck.id > 1010 and truck.id <= 1025:
+                free_man += 1
+            if truck.id > 1025:
+                free_actros +=1
+        if free_scania == 0:
+            print("model Scania, 8000km range, 42000kg capacity, None available")
+        else:
+            print(f"ID {1010 - free_scania} to 1010, model Scania, 8000km range, 42000kg capacity")
+        if free_man == 0:
+            print("model Scania, 10000km range, 37000kg capacity, None available")
+        else:
+            print(f"ID {1025 - free_man} to 1025, model Man, 10000km range, 37000kg capacity")
+        if free_actros == 0:
+            print("model Actros, 13000km range, 26000kg capacity, None available")
+        else:
+            print(f"ID {1040 - free_scania} to 1040, model Actros, 13000km range, 26000kg capacity")
+
+
+            #(free scania truck ids) with range and capacity
+            #(free man truck ids) with range and capacity
+            #(free actros truck ids) with range and capacity
 
     def route_info(self, route_id: int):
         pass
