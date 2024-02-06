@@ -69,7 +69,7 @@ class ApplicationData:
                 ids = sorted(truck.id for truck in available_trucks)
                 print(f"ID {ids[0]} to {ids[-1]}, {name}, {attributes['max_range']}km range, {attributes['capacity']}kg capacity")
             else:
-                print(f"model {name}, {attributes['range']}km range, {attributes['capacity']}kg capacity, None available")
+                print(f"{name}, {attributes['range']}km range, {attributes['capacity']}kg capacity, None available")
 
 
     def route_info(self, route_id: int):
