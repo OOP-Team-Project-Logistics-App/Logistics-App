@@ -40,8 +40,16 @@ class ApplicationData:
             if id == route_id:
                 return route
         raise ValueError("Route with this id was not found.")
+    
+    def get_package(self, package_id: int):
+        for id, package in self._delivery_packages:
+            if id == package_id:
+                return package
+        raise ValueError("Package with this id was not found.")
 
-    def assign_package_to_route(self, package: Package, route: Route):
+    def assign_package_to_route(self, package, route, start_location, end_location, weight):
+        #have to implement contact_info
+        package = Package(start_location, end_location, weight)
         if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")

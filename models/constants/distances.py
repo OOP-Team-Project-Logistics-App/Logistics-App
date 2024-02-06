@@ -1,7 +1,7 @@
 class Distance:
     cities = ["Sydney", "Melbourne", "Adelaide", "Alice_Springs", "Brisbane", "Darwin", "Perth"]
 
-    distances_matrix = [
+    distances = [
         [0, 877, 1376, 2762, 909, 3935, 4016],
         [877, 0, 725, 2255, 1765, 3752, 3509],
         [1376, 725, 0, 1530, 1927, 3027, 2785],
@@ -15,4 +15,4 @@ class Distance:
     def find_distance(cls, departure_city, arrival_city):
         departure_city_idx = cls.cities.index(departure_city)
         arrival_city_idx = cls.cities.index(arrival_city)
-        return cls.distances_matrix[departure_city_idx][arrival_city_idx]
+        return cls.distances[departure_city_idx][arrival_city_idx]
