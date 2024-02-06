@@ -1,3 +1,6 @@
+from models.constants.distances import Distance
+
+
 class Package:
     id_count = 0
 
@@ -26,10 +29,12 @@ class Package:
         return self._end_location
 
     def set_start_location(self):
-        pass
+        if self._start_location in Distance.cities:
+            pass
 
     def set_end_location(self):
-        pass
+        if self._end_location in Distance.cities:
+            pass
 
     def assign_package(self, package):
         pass

@@ -6,7 +6,20 @@ from models.truck import Truck
 class ApplicationData:
     def __init__(self):
         self._delivery_routes: list[Route] = []
+        self._delivery_packages: list[Package] = []
         self._trucks: list[Truck] = []
+
+    @property
+    def delivery_routes(self):
+        return tuple(self._delivery_routes)
+    
+    @property
+    def delivery_packages(self):
+        return tuple(self._delivery_packages)
+    
+    @property
+    def trucks(self):
+        return tuple(self._trucks)
 
     def add_route(self, route_id: int, route: Route):
         self._delivery_routes.append((route_id, route))
