@@ -40,7 +40,7 @@ class ApplicationData:
 
     def get_route(self, route_id: int):
         for id, route in self._delivery_routes:
-            if id == route_id:
+            if int(id) == route_id:
                 return route
         raise ValueError(f"Route with this id was not found.")
 
@@ -48,6 +48,11 @@ class ApplicationData:
         if package._start_location and package._end_location in route:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
+
+    def find_truck_by_id(self, truck_id):
+        for truck in self._trucks:
+            if truck.id == truck_id:
+                return truck
 
     def show_available_trucks(self):
         print("Available trucks:")
@@ -74,10 +79,6 @@ class ApplicationData:
         else:
             print(f"ID {1040 - free_scania} to 1040, model Actros, 13000km range, 26000kg capacity")
 
-
-            #(free scania truck ids) with range and capacity
-            #(free man truck ids) with range and capacity
-            #(free actros truck ids) with range and capacity
 
     def route_info(self, route_id: int):
         pass
