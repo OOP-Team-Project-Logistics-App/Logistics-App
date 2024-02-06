@@ -45,4 +45,4 @@ class Route:
         self.truck = truck
 
     def __str__(self):
-        return f"Route {self._id} {' -> '.join(self._locations)} created and truck with id {self.truck.id} is assigned."
+        return f"Route {self._id} {' -> '.join(self._locations)} created."

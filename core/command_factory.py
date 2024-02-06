@@ -28,7 +28,6 @@ class CommandFactory:
         if cmd.lower() == "createtrucks":
             return InitializeTrucksCommand(self._app_data)
         if cmd.lower() == "updateroute":
-                return UpdateRouteCommand(self._app_data)
+            return UpdateRouteCommand(self._app_data)
 
-        
         raise InvalidCommand(cmd)

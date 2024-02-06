@@ -8,6 +8,9 @@ class UpdateRouteCommand:
     def execute(self):
         route_to_assign_to = self.app_data.get_route(int(input("Enter route ID you wish to update: ")))
         self.app_data.show_available_trucks()
-        truck_id = int(input("Enter the truck ID you wish to assign:"))
+        truck_id = int(input("Enter the truck ID you wish to assign: "))
+        truck = self.app_data.find_suitable_truck(route_to_assign_to)
         truck = self.app_data.find_truck_by_id(truck_id)
         route_to_assign_to.assign_truck(truck)
+
+        return f"Truck with id {truck_id} was assigned to this route."

@@ -42,10 +42,10 @@ class ApplicationData:
         for id, route in self._delivery_routes:
             if int(id) == route_id:
                 return route
-        raise ValueError(f"Route with this id was not found.")
+        raise ValueError("Route with this id was not found.")
 
     def assign_package_to_route(self, package: Package, route: Route):
-        if package._start_location and package._end_location in route:
+        if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
 
@@ -53,31 +53,23 @@ class ApplicationData:
         for truck in self._trucks:
             if truck.id == truck_id:
                 return truck
+        raise ValueError("Truck with this id was not found.")
 
     def show_available_trucks(self):
+        trucks = {
+            "Scania": {"id": range(1001, 1011), "max_range": 8000, "capacity": 42000},
+            "Man": {"id": range(1011, 1026), "max_range": 10000, "capacity": 37000},
+            "Actros": {"id": range(1026, 1041), "max_range": 13000, "capacity": 26000}
+        }
+
         print("Available trucks:")
-        free_scania = 0
-        free_man = 0
-        free_actros = 0
-        for truck in self._trucks:
-            if truck.id <= 1010:
-                free_scania += 1
-            if truck.id > 1010 and truck.id <= 1025:
-                free_man += 1
-            if truck.id > 1025:
-                free_actros +=1
-        if free_scania == 0:
-            print("model Scania, 8000km range, 42000kg capacity, None available")
-        else:
-            print(f"ID {1010 - free_scania} to 1010, model Scania, 8000km range, 42000kg capacity")
-        if free_man == 0:
-            print("model Scania, 10000km range, 37000kg capacity, None available")
-        else:
-            print(f"ID {1025 - free_man} to 1025, model Man, 10000km range, 37000kg capacity")
-        if free_actros == 0:
-            print("model Actros, 13000km range, 26000kg capacity, None available")
-        else:
-            print(f"ID {1040 - free_scania} to 1040, model Actros, 13000km range, 26000kg capacity")
+        for name, attributes in trucks.items():
+            available_trucks = [truck for truck in self._trucks if truck.name == name]
+            if available_trucks:
+                ids = sorted(truck.id for truck in available_trucks)
+                print(f"ID {ids[0]} to {ids[-1]}, {name}, {attributes['max_range']}km range, {attributes['capacity']}kg capacity")
+            else:
+                print(f"model {name}, {attributes['range']}km range, {attributes['capacity']}kg capacity, None available")
 
 
     def route_info(self, route_id: int):

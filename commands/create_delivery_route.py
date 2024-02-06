@@ -10,8 +10,6 @@ class CreateDeliveryRouteCommand:
 
     def execute(self):
         new_route = Route(self.route_id, self.locations)
-        truck = self.app_data.find_suitable_truck(new_route)
-        new_route.assign_truck(truck)
         self.app_data.add_route(self.route_id, new_route)
 
         return str(new_route)
