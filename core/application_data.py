@@ -32,7 +32,9 @@ class ApplicationData:
         raise ValueError(f"Route with this id was not found.")
 
     def assign_package_to_route(self, package: Package, route: Route):
-        pass
+        if package._start_location and package._end_location in route:
+            route.add_package(package)
+        raise ValueError("Package's start and end location do not fit the route.")
 
     def route_info(self, route_id: int):
         pass

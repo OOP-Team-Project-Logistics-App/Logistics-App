@@ -1,10 +1,17 @@
 class Package:
+    id_count = 0
+
     def __init__(self, id: int, start_location: str, end_location: str, weight: float, contact_info: str):
         self._id = id
         self._start_location = start_location
-        self.end_location = end_location
-        self.weight = weight
+        self._end_location = end_location
+        self._weight = weight
         self.contact_info = contact_info
+
+    @classmethod
+    def id_counter(cls):
+        id_count += 1
+        return cls.id_count
 
     @property
     def id(self):
@@ -12,7 +19,11 @@ class Package:
     
     @property
     def start_location(self):
-        return self._start_location
+        return self._start_location\
+        
+    @property
+    def end_location(self):
+        return self._end_location
 
     def set_start_location(self):
         pass
@@ -25,13 +36,7 @@ class Package:
 
     @property
     def weight(self):
-        return self.weight
-    
-    @weight.setter
-    def weight(self, value):
-        if self.weight <= self.truck.capacity:
-            self.weight = value
-        raise ValueError("Package exceeds the truck's weight limit.")
+        return self._weight
 
     def get_contact_info(self):
         pass
