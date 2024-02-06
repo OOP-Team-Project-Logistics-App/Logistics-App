@@ -56,9 +56,7 @@ class ApplicationData:
 
     def show_available_trucks(self):
         print("Available trucks:")
-        free_scania = 0
-        free_man = 0
-        free_actros = 0
+        free_scania, free_man, free_actros = 0, 0, 0
         for truck in self._trucks:
             if truck.id <= 1010:
                 free_scania += 1
