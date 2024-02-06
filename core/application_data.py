@@ -25,12 +25,9 @@ class ApplicationData:
         self._delivery_routes.append((route_id, route))
 
     def initialize_trucks(self):
-        for id in range(1001, 1010):
-            self._trucks.append(Truck(id, "Scania", 42000, 8000))
-        for id in range(1011, 1025):
-            self._trucks.append(Truck(id, "Man", 37000, 10000))
-        for id in range(1026, 1040):
-            self._trucks.append(Truck(id, "Actros", 26000, 13000))
+        self._trucks.extend([Truck(id, "Scania", 42000, 8000) for id in range(1001, 1011)])
+        self._trucks.extend([Truck(id, "Man", 37000, 10000) for id in range(1011, 1026)])
+        self._trucks.extend([Truck(id, "Actros", 26000, 13000) for id in range(1026, 1041)])
 
     def find_suitable_truck(self, route: Route):
         for idx, truck in enumerate(self._trucks):
@@ -69,7 +66,7 @@ class ApplicationData:
                 ids = sorted(truck.id for truck in available_trucks)
                 print(f"ID {ids[0]} to {ids[-1]}, {name}, {attributes['max_range']}km range, {attributes['capacity']}kg capacity")
             else:
-                print(f"{name}, {attributes['range']}km range, {attributes['capacity']}kg capacity, None available")
+                print(f"{name}, {attributes['max_range']}km range, {attributes['capacity']}kg capacity, None available")
 
 
     def route_info(self, route_id: int):
