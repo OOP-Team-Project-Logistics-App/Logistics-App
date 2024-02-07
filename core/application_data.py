@@ -66,23 +66,6 @@ class ApplicationData:
                 return truck
         raise ValueError("Truck with this id was not found.")
 
-    def show_available_trucks(self):
-        trucks = {
-            "Scania": {"id": range(1001, 1011), "max_range": 8000, "capacity": 42000},
-            "Man": {"id": range(1011, 1026), "max_range": 10000, "capacity": 37000},
-            "Actros": {"id": range(1026, 1041), "max_range": 13000, "capacity": 26000}
-        }
-
-        print("Available trucks:")
-        for name, attributes in trucks.items():
-            available_trucks = [truck for truck in self._trucks if truck.name == name]
-            if available_trucks:
-                ids = sorted(truck.id for truck in available_trucks)
-                print(f"ID {ids[0]} to {ids[-1]}, {name}, {attributes['max_range']}km range, {attributes['capacity']}kg capacity")
-            else:
-                print(f"{name}, {attributes['max_range']}km range, {attributes['capacity']}kg capacity, None available")
-
-
     def route_info(self, route_id: int):
         pass
 

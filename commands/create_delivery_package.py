@@ -9,4 +9,5 @@ class CreateDeliveryPackageCommand:
         start_location, end_location, weight = self.params
         package = Package(start_location, end_location, int(weight))
         self.app_data.add_package(package)
-        return package
+        
+        return str(package)

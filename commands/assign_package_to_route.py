@@ -8,8 +8,8 @@ class AssignPackageToRouteCommand:
 
     def execute(self):
         package_id, route_id = self.params
-        package = self.app_data.get_package_by_id(int(package_id))
-        route = self.app_data.get_route_by_id(int(route_id))
+        package = self.app_data.get_package_by_id(package_id)
+        route = self.app_data.get_route_by_id(route_id)
         assigned_truck = route.assigned_truck
 
         if assigned_truck == None:

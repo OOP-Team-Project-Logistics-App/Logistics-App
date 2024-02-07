@@ -9,7 +9,6 @@ class Package:
         self.start_location = start_location
         self.end_location = end_location
         self._weight = weight
-        Package.id_count += 1
         # self.contact_info = contact_info -> temporary removed as an attribute
 
     @classmethod
