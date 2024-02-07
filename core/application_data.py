@@ -12,7 +12,7 @@ class ApplicationData:
     @property
     def delivery_routes(self):
         return tuple(self._delivery_routes)
-    
+
     @property
     def delivery_packages(self):
         return tuple(self._delivery_packages)
@@ -21,8 +21,12 @@ class ApplicationData:
     def trucks(self):
         return tuple(self._trucks)
 
-    def add_route(self, route_id: int, route: Route):
-        self._delivery_routes.append((route_id, route))
+    def add_route(self, route: Route):
+        self._delivery_routes.append(route)
+
+    def add_package(self, package: Package):
+        if package not in self._delivery_packages:
+            self._delivery_packages.append(package)
 
     def initialize_trucks(self):
         self._trucks.extend([Truck(id, "Scania", 42000, 8000) for id in range(1001, 1011)])
@@ -31,19 +35,21 @@ class ApplicationData:
 
     def find_suitable_truck(self, route: Route):
         for idx, truck in enumerate(self._trucks):
-            if truck.max_range >= route.total_distance():
-                return self._trucks.pop(idx)
+            if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
+                route.assign_truck(truck)
+                self._trucks.pop(idx)
+                return truck
         raise ValueError("There is no suitable truck for this route.")
 
-    def get_route(self, route_id: int):
-        for id, route in self._delivery_routes:
-            if id == route_id:
+    def get_route_by_id(self, route_id: int):
+        for route in self._delivery_routes:
+            if route.id == route_id:
                 return route
         raise ValueError("Route with this id was not found.")
     
-    def get_package(self, package_id: int):
-        for id, package in self._delivery_packages:
-            if id == package_id:
+    def get_package_by_id(self, package_id: int):
+        for package in self._delivery_packages:
+            if package.id == package_id:
                 return package
         raise ValueError("Package with this id was not found.")
 

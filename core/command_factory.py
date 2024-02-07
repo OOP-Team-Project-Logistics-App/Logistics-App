@@ -4,7 +4,8 @@ from commands.initialize_trucks import InitializeTrucksCommand
 from commands.search_route import SearchRouteCommand
 from commands.view_information import ViewInformationCommand
 from commands.view_route import ViewRouteCommand
-from commands.update_route import UpdateRouteCommand
+from commands.assign_truck_to_route import AssignTruckToRouteCommand
+from commands.assign_package_to_route import AssignPackageToRouteCommand
 from errors.invalid_command import InvalidCommand
 
 
@@ -27,7 +28,9 @@ class CommandFactory:
             return ViewRouteCommand(params, self._app_data)
         if cmd.lower() == "createtrucks":
             return InitializeTrucksCommand(self._app_data)
-        if cmd.lower() == "updateroute":
-            return UpdateRouteCommand(self._app_data)
+        if cmd.lower() == "assigntrucktoroute":
+            return AssignTruckToRouteCommand(params, self._app_data)
+        if cmd.lower() == "assignpackagetoroute":
+            return AssignPackageToRouteCommand(params, self._app_data)
 
         raise InvalidCommand(cmd)

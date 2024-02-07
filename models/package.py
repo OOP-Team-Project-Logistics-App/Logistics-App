@@ -2,19 +2,15 @@ from models.constants.distances import Distance
 
 
 class Package:
-    id_count = 0
+    id_count = 1
 
-    def __init__(self, package_id: int, start_location: str, end_location: str, weight: float):
-        self._id = package_id
+    def __init__(self, start_location: str, end_location: str, weight: int):
+        self._id = Package.id_count
         self.start_location = start_location
         self.end_location = end_location
         self._weight = weight
+        Package.id_count += 1
         # self.contact_info = contact_info -> temporary removed as an attribute
-
-    @classmethod
-    def id_counter(cls):
-        cls.id_count += 1
-        return cls.id_count
 
     @property
     def id(self):
@@ -28,7 +24,8 @@ class Package:
     def start_location(self, location):
         if location in Distance.cities:
             self._start_location = location
-        raise ValueError("There is no hub in this city.")
+        else:
+            raise ValueError("There is no hub in this city.")
         
     @property
     def end_location(self):
@@ -38,7 +35,8 @@ class Package:
     def end_location(self, location):
         if location in Distance.cities:
             self._end_location = location
-        raise ValueError("There is no hub in this city.")
+        else:
+            raise ValueError("There is no hub in this city.")
     
     @property
     def weight(self):

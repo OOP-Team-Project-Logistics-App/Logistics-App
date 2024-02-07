@@ -7,4 +7,4 @@ class ViewRouteCommand:
         self.app_data = app_data
 
     def execute(self):
-        return str(self.app_data.get_route(self.route_id))
+        return str(self.app_data.get_route_by_id(self.route_id))

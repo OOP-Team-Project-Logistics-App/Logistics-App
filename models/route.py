@@ -1,19 +1,22 @@
 from models.constants.distances import Distance
+from models.truck import Truck
 
 
 class Route:
-    id_count = 0
+    id_count = 1
 
-    def __init__(self, route_id: int, locations: list[str]):
-        self._id = route_id
+    def __init__(self, locations: list[str], assigned_truck: Truck = None):
+        self._id = Route.id_count
         self._locations = locations
         self._packages = []
+        self._assigned_truck = assigned_truck
+        Route.id_count += 1
 
-    @classmethod
-    def id_counter(cls):
-        cls.id_count += 1
-        return cls.id_count
-    
+
+    @property
+    def assigned_truck(self):
+        return self._assigned_truck
+
     @property
     def id(self):
         return self._id
@@ -32,7 +35,7 @@ class Route:
     def add_package(self, package):
         self._packages.append(package)
 
-    def total_weight(self):
+    def total_weight(self):             #TO FIX
         return sum(package.weight for package in self.packages)
 
     def total_distance(self):
@@ -41,8 +44,8 @@ class Route:
             total += Distance.find_distance(self.locations[i], self.locations[i + 1])
         return total
 
-    def assign_truck(self, truck):
-        self.truck = truck
+    def assign_truck(self, truck: Truck):
+        self._assigned_truck = truck
 
     def __str__(self):
         return f"Route {self._id} {' -> '.join(self._locations)} created."

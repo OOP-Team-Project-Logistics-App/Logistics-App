@@ -1,8 +1,12 @@
+from models.package import Package
+
 class CreateDeliveryPackageCommand:
     def __init__(self, params, app_data):
         self.params = params
         self.app_data = app_data
 
     def execute(self):
-        # check if we have expected number of parameters, if yes, assign parameters
-        pass
+        start_location, end_location, weight = self.params
+        package = Package(start_location, end_location, int(weight))
+        self.app_data.add_package(package)
+        return package
