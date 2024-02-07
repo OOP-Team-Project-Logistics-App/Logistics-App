@@ -1,4 +1,4 @@
-from models.constants.distances import Distance
+from models.constants.distance_data import Distance
 
 
 class Package:

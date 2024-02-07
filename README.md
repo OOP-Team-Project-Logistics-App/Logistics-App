@@ -29,5 +29,7 @@ viewroute 4
 assigntrucktoroute 3
 createdeliverypackage Adelaide Sydney 1000
 assignpackagetoroute 1 3
+assigntrucktoroute 4
+createdeliverypackage Perth Brisbane 4500
 end
 ```

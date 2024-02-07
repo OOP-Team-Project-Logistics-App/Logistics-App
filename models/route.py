@@ -1,4 +1,4 @@
-from models.constants.distances import Distance
+from models.constants.distance_data import Distance
 from models.truck import Truck
 
 
@@ -38,6 +38,9 @@ class Route:
     def add_package(self, package):
         self._packages.append(package)
 
+    def assign_truck(self, truck: Truck):
+        self._assigned_truck = truck
+
     def total_weight(self):
         return sum(package.weight for package in self.packages)
 
@@ -46,9 +49,6 @@ class Route:
         for i in range(len(self.locations) - 1):
             total += Distance.find_distance(self.locations[i], self.locations[i + 1])
         return total
-
-    def assign_truck(self, truck: Truck):
-        self._assigned_truck = truck
 
     def __str__(self):
         return f"Route {self._id} {' -> '.join(self._locations)} created."

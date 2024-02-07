@@ -52,6 +52,12 @@ class ApplicationData:
             if package.id == int(package_id):
                 return package
         raise ValueError("Package with this id was not found.")
+    
+    def get_truck_by_id(self, truck_id):
+        for truck in self._trucks:
+            if truck.id == truck_id:
+                return truck
+        raise ValueError("Truck with this id was not found.")
 
     def assign_package_to_route(self, package, route, start_location, end_location, weight):
         #have to implement contact_info
@@ -59,12 +65,6 @@ class ApplicationData:
         if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
-
-    def find_truck_by_id(self, truck_id):
-        for truck in self._trucks:
-            if truck.id == truck_id:
-                return truck
-        raise ValueError("Truck with this id was not found.")
 
     def route_info(self, route_id: int):
         pass
