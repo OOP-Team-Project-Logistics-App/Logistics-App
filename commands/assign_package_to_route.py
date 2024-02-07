@@ -18,4 +18,4 @@ class AssignPackageToRouteCommand:
             raise ValueError("Package weight exceeds assigned truck's remaining capacity")
         route.add_package(package)
 
-        return f"Package with {package_id} was assigned to route {route_id}."
+        return f"Package with id {package_id} was assigned to route {route_id}."

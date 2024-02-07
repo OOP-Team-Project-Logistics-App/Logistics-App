@@ -56,4 +56,4 @@ class Package:
         pass
 
     def __str__(self):
-        return f"{self._start_location} -> {self._end_location}"
+        return f"{self._start_location} -> {self._end_location}, Weight: {self.weight}kg"

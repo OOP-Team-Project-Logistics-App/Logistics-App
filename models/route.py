@@ -41,14 +41,14 @@ class Route:
     def assign_truck(self, truck: Truck):
         self._assigned_truck = truck
 
-    def total_weight(self):
-        return sum(package.weight for package in self.packages)
-
     def total_distance(self):
         total = 0
         for i in range(len(self.locations) - 1):
             total += Distance.find_distance(self.locations[i], self.locations[i + 1])
         return total
+    
+    def total_weight(self):
+        return sum(package.weight for package in self.packages)
 
     def __str__(self):
         return f"Route {self._id} {' -> '.join(self._locations)} created."

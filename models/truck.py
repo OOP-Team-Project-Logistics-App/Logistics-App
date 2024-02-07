@@ -20,3 +20,6 @@ class Truck:
     @property
     def max_range(self):
         return self._max_range
+    
+    def __str__(self):
+        return f"ID: {self.id}, {self.name}, {self.capacity}kg, {self.max_range}km"
