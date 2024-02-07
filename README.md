@@ -26,6 +26,10 @@ viewroute 1
 viewroute 2
 viewroute 3
 viewroute 4
-viewroute 6
+createdeliverypackage Adelaide Sydney 1000
+assigntrucktoroute 3
+assignpackagetoroute 1 3
 end
 ```
+
+end command currently not working

@@ -20,8 +20,6 @@ class CommandFactory:
             return CreateDeliveryRouteCommand(params, self._app_data)
         if cmd.lower() == "createdeliverypackage":
             return CreateDeliveryPackageCommand(params, self._app_data)
-        if cmd.lower() == "searchroute":
-            return SearchRouteCommand(params, self._app_data)
         if cmd.lower() == "viewinformation":
             return ViewInformationCommand(params, self._app_data)
         if cmd.lower() == "viewroute":
