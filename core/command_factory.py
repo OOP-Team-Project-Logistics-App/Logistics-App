@@ -1,7 +1,6 @@
 from commands.create_delivery_route import CreateDeliveryRouteCommand
 from commands.create_delivery_package import CreateDeliveryPackageCommand
 from commands.initialize_trucks import InitializeTrucksCommand
-from commands.search_route import SearchRouteCommand
 from commands.view_information import ViewInformationCommand
 from commands.view_route import ViewRouteCommand
 from commands.assign_truck_to_route import AssignTruckToRouteCommand
