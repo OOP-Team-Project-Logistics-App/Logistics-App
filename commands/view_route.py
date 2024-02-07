@@ -11,6 +11,10 @@ class ViewRouteCommand:
         truck = route.assigned_truck
         packages = route.packages
 
-        return f"Information: {route}, \n \
-            Truck: {str(truck)}, \n \
-            Packages: {', '.join(str(package) for package in packages)}"
+        output_string = f"Information about Route {route.id}: \n"
+        output_string += f"Route: {route.route_info()} \n"
+        output_string += f"Truck {str(truck)} \n"
+        output_string += "Packages: "
+        output_string += "\n".join(str(package.package_info()) for package in packages)
+        
+        return output_string

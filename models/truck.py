@@ -22,4 +22,4 @@ class Truck:
         return self._max_range
     
     def __str__(self):
-        return f"ID: {self.id}, {self.name}, {self.capacity}kg, {self.max_range}km"
+        return f"ID: {self.id}, Model: {self.name}, Capacity: {self.capacity}kg, Max range: {self.max_range}km"

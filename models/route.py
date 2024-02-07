@@ -49,6 +49,9 @@ class Route:
     
     def total_weight(self):
         return sum(package.weight for package in self.packages)
+    
+    def route_info(self):
+        return f"{' -> '.join(self._locations)}"
 
     def __str__(self):
-        return f"Route {self._id} {' -> '.join(self._locations)} created."
+        return f"Route {self._id}: {' -> '.join(self._locations)} created."

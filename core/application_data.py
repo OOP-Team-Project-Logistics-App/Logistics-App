@@ -65,9 +65,3 @@ class ApplicationData:
         if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
-
-    def route_info(self, route_id: int):
-        pass
-
-    def package_info(self, package_id: int):
-        pass

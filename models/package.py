@@ -46,14 +46,14 @@ class Package:
     def weight(self):
         return self._weight
 
-    def total_capacity(self):
-        pass
-
-    def assign_package(self, package):
-        pass
-
     def get_contact_info(self):
         pass
 
+    def package_info(self):
+        return f"{self.start_location} -> {self.end_location}, Weight: {self.weight}kg"
+    
     def __str__(self):
-        return f"{self._start_location} -> {self._end_location}, Weight: {self.weight}kg"
+        return f"Package with id {self._id} created. --\n" \
+                f"-- Accepted in city: {self.start_location} --\n" \
+                f"-- Delivery to: {self.end_location} --\n" \
+                f"-- Weight: {self.weight}kg --"

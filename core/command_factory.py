@@ -1,7 +1,6 @@
 from commands.create_delivery_route import CreateDeliveryRouteCommand
 from commands.create_delivery_package import CreateDeliveryPackageCommand
 from commands.initialize_trucks import InitializeTrucksCommand
-from commands.view_information import ViewInformationCommand
 from commands.view_route import ViewRouteCommand
 from commands.assign_truck_to_route import AssignTruckToRouteCommand
 from commands.assign_package_to_route import AssignPackageToRouteCommand
@@ -19,8 +18,6 @@ class CommandFactory:
             return CreateDeliveryRouteCommand(params, self._app_data)
         if cmd.lower() == "createdeliverypackage":
             return CreateDeliveryPackageCommand(params, self._app_data)
-        if cmd.lower() == "viewinformation":
-            return ViewInformationCommand(params, self._app_data)
         if cmd.lower() == "viewroute":
             return ViewRouteCommand(params, self._app_data)
         if cmd.lower() == "createtrucks":
