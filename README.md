@@ -19,17 +19,16 @@ Checks routes and the ids of the assigned trucks to them. Shows them through the
 ```
 createtrucks
 createdeliveryroute Brisbane Sydney Melbourne
-createdeliveryroute Sydney Melbourne Adelaide
-createdeliveryroute Alice_Springs Adelaide Melbourne Sydney Brisbane
 createdeliveryroute Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
+assigntrucktoroute 1
+createdeliverypackage Sydney Melbourne 5500 0412345678
+assignpackagetoroute 1 1
+assigntrucktoroute 2
+createdeliverypackage Adelaide Darwin 6000 0512345678
+createdeliverypackage Perth Sydney 3000 0512345678
+assignpackagetoroute 2 2
+assignpackagetoroute 3 2
 viewroute 1
 viewroute 2
-viewroute 3
-viewroute 4
-assigntrucktoroute 3
-createdeliverypackage Adelaide Sydney 1000
-assignpackagetoroute 1 3
-assigntrucktoroute 4
-createdeliverypackage Perth Brisbane 4500
 end
 ```

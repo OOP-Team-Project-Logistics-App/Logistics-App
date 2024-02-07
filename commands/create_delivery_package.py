@@ -11,7 +11,8 @@ class CreateDeliveryPackageCommand:
         start_location = self.params[0]
         end_location = self.params[1]
         weight = try_parse_int(self.params[2])
-        new_package = Package(start_location, end_location, weight)
+        contact_info = self.params[3]
+        new_package = Package(start_location, end_location, weight, contact_info)
         self.app_data.add_package(new_package)
         
         return str(new_package)

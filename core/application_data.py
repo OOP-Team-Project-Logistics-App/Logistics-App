@@ -59,9 +59,8 @@ class ApplicationData:
                 return truck
         raise ValueError("Truck with this id was not found.")
 
-    def assign_package_to_route(self, package, route, start_location, end_location, weight):
-        #have to implement contact_info
-        package = Package(start_location, end_location, weight)
+    def assign_package_to_route(self, package, route, start_location, end_location, weight, contact_info):
+        package = Package(start_location, end_location, weight, contact_info)
         if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")

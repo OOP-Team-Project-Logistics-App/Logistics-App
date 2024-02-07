@@ -1,6 +1,7 @@
 from models.route import Route
 from core.application_data import ApplicationData
 
+
 class AssignTruckToRouteCommand:
     def __init__(self, params, app_data: ApplicationData):
         self.route_id = int(params[0])
