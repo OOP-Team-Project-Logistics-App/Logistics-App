@@ -2,15 +2,20 @@ from models.constants.distances import Distance
 
 
 class Package:
-    id_count = 1
+    id_count = 0
 
     def __init__(self, start_location: str, end_location: str, weight: int):
-        self._id = Package.id_count
+        self._id = self.id_counter()
         self.start_location = start_location
         self.end_location = end_location
         self._weight = weight
         Package.id_count += 1
         # self.contact_info = contact_info -> temporary removed as an attribute
+
+    @classmethod
+    def id_counter(cls):
+        cls.id_count += 1
+        return cls.id_count
 
     @property
     def id(self):

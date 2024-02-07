@@ -3,15 +3,18 @@ from models.truck import Truck
 
 
 class Route:
-    id_count = 1
+    id_count = 0
 
     def __init__(self, locations: list[str], assigned_truck: Truck = None):
-        self._id = Route.id_count
+        self._id = self.id_counter()
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
-        Route.id_count += 1
 
+    @classmethod
+    def id_counter(cls):
+        cls.id_count += 1
+        return cls.id_count
 
     @property
     def assigned_truck(self):
@@ -35,7 +38,7 @@ class Route:
     def add_package(self, package):
         self._packages.append(package)
 
-    def total_weight(self):             #TO FIX
+    def total_weight(self):
         return sum(package.weight for package in self.packages)
 
     def total_distance(self):

@@ -43,13 +43,13 @@ class ApplicationData:
 
     def get_route_by_id(self, route_id: int):
         for route in self._delivery_routes:
-            if route.id == route_id:
+            if route.id == int(route_id):
                 return route
         raise ValueError("Route with this id was not found.")
     
     def get_package_by_id(self, package_id: int):
         for package in self._delivery_packages:
-            if package.id == package_id:
+            if package.id == int(package_id):
                 return package
         raise ValueError("Package with this id was not found.")
 
