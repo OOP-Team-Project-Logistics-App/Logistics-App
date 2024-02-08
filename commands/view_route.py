@@ -16,6 +16,9 @@ class ViewRouteCommand(BaseCommand):
         output_string += f"{route.route_info()} \n"
         output_string += f"Truck {str(truck)} \n"
         output_string += "Packages:\n"
-        output_string += "\n".join(str(package.package_info()) for package in packages)
+        if packages:
+            output_string += "\n".join(str(package.package_info()) for package in packages)
+        else:
+            output_string += "No packages assigned to this route."
         
         return output_string
