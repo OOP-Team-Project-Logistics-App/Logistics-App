@@ -19,16 +19,20 @@ Creates routes, assigns trucks and packages by ids to them. Shows information ab
 ```
 createtrucks
 createdeliveryroute Brisbane Sydney Melbourne
+createdeliveryroute Sydney Melbourne Adelaide
 createdeliveryroute Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
 assigntrucktoroute 1
 createdeliverypackage Sydney Melbourne 5500 0412345678
+searchforroute 1
 assignpackagetoroute 1 1
 assigntrucktoroute 2
+assigntrucktoroute 3
 createdeliverypackage Adelaide Darwin 6000 0512345678
 createdeliverypackage Perth Sydney 3000 0512345678
-assignpackagetoroute 2 2
 assignpackagetoroute 3 2
+assignpackagetoroute 3 3
 viewroute 1
 viewroute 2
+viewroute 3
 end
 ```
