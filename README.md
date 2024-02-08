@@ -23,7 +23,7 @@ createdeliveryroute Sydney Melbourne Adelaide
 createdeliveryroute Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
 assigntrucktoroute 1
 createdeliverypackage Sydney Melbourne 5500 0412345678
-searchforroute 1
+searchroute 1
 assignpackagetoroute 1 1
 assigntrucktoroute 2
 assigntrucktoroute 3
