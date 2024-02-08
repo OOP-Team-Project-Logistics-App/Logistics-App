@@ -43,7 +43,7 @@ class Route:
     def assign_truck(self, truck: Truck):
         self._assigned_truck = truck
 
-    def total_distance(self):
+    def total_distance(self) -> int:
         total = 0
         for i in range(len(self.locations) - 1):
             total += Distance.find_distance(self.locations[i], self.locations[i + 1])
@@ -52,7 +52,16 @@ class Route:
     def total_weight(self):
         return sum(package.weight for package in self.packages)
     
-    def route_info(self):
+    def route_info(self) -> str:
+        """
+        The method calculates and returns a string with the time when a truck departures from the start location \
+        and arrival time of the end location. If the cities in the route are more than two, the departure time \
+        and the arrival time of the in between cities match. Departure time of the start location will always be 6 AM \
+        on the next day from the current one.
+
+            Returns:
+                    str: A string representation of the route's journey schedule.
+        """
         departure_time = datetime(datetime.now().year, datetime.now().month, datetime.now().day, 6) + timedelta(days=1)
         output_string = f"Route {self._id}: "
         for i in range(len(self._locations) - 1):
