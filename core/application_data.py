@@ -61,7 +61,8 @@ class ApplicationData:
     
     def search_route(self, start_location: str, end_location: str):
         matching_routes = [route for route in self._delivery_routes 
-                            if start_location in route.locations and end_location in route.locations]
+                            if start_location in route.locations and end_location in route.locations
+                            and route.locations.index(start_location) < route.locations.index(end_location)]
         return matching_routes
 
     def assign_package_to_route(self, package, route, start_location, end_location, weight, contact_info):
