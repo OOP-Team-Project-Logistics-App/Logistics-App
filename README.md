@@ -29,7 +29,7 @@ assigntrucktoroute 2
 assigntrucktoroute 3
 createdeliverypackage Adelaide Darwin 6000 0512345678
 createdeliverypackage Perth Sydney 3000 0512345678
-assignpackagetoroute 3 2
+assignpackagetoroute 2 3
 assignpackagetoroute 3 3
 viewroute 1
 viewroute 2
