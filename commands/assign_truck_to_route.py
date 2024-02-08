@@ -1,13 +1,13 @@
-from models.route import Route
+from commands.base.base_command import BaseCommand
 from core.application_data import ApplicationData
 
 
-class AssignTruckToRouteCommand:
-    def __init__(self, params, app_data: ApplicationData):
-        self.route_id = int(params[0])
-        self.app_data = app_data
+class AssignTruckToRouteCommand(BaseCommand):
+    def __init__(self, params: list, app_data: ApplicationData):
+        super().__init__(params, app_data)
 
     def execute(self):
+        self.route_id = int(self.params[0])
         route = self.app_data.get_route_by_id(self.route_id)
         truck = self.app_data.find_suitable_truck(route)
 

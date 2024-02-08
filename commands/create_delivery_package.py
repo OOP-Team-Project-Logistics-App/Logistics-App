@@ -1,11 +1,12 @@
+from core.application_data import ApplicationData
+from commands.base.base_command import BaseCommand
 from commands.validators.validation_helpers import try_parse_int
 from models.package import Package
 
 
-class CreateDeliveryPackageCommand:
-    def __init__(self, params, app_data):
-        self.params = params
-        self.app_data = app_data
+class CreateDeliveryPackageCommand(BaseCommand):
+    def __init__(self, params: list, app_data: ApplicationData):
+        super().__init__(params, app_data)
 
     def execute(self):
         start_location = self.params[0]
