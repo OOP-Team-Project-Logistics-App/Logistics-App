@@ -1,0 +1,2 @@
+class UpdateCurrentDayCommand:
+    pass

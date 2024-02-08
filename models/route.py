@@ -62,6 +62,11 @@ class Route:
             Returns:
                     str: A string representation of the route's journey schedule.
         """
+        #departure time needs to be able to be changed no earlier than datetime.now
+        #update_current_day changes route progress if we are making package_status method for each package
+        #move departure time to create_delivery_route?
+        #make checks for departure time no longer than 30 days from today
+        #
         departure_time = datetime(datetime.now().year, datetime.now().month, datetime.now().day, 6) + timedelta(days=1)
         output_string = f"Route {self._id}: "
         for i in range(len(self._locations) - 1):

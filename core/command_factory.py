@@ -15,6 +15,14 @@ class CommandFactory:
     def create(self, input_line):
         cmd, *params = input_line.split()
 
+        #if cmd.lower() == 'registeruser':
+        #    return RegisterUserCommand(self._app_data)
+        #if cmd.lower() == 'login':
+        #    return LoginCommand(self._app_data)
+        #if cmd.lower() == 'logout':
+        #    return LogoutCommand(self._app_data)
+        # if cmd.lower() == 'updateday':
+        #    return UpdateCurrentDayCommand(self._app_data)
         if cmd.lower() == "createdeliveryroute":
             return CreateDeliveryRouteCommand(params, self._app_data)
         if cmd.lower() == "createdeliverypackage":
