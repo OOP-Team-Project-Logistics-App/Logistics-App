@@ -6,6 +6,7 @@ from commands.view_route import ViewRouteCommand
 from commands.assign_truck_to_route import AssignTruckToRouteCommand
 from commands.assign_package_to_route import AssignPackageToRouteCommand
 from errors.invalid_command import InvalidCommand
+from commands.admin_login import AdminLoginLogoutCommand
 
 
 class CommandFactory:
@@ -15,8 +16,8 @@ class CommandFactory:
     def create(self, input_line):
         cmd, *params = input_line.split()
 
-        #if cmd.lower() == 'registeruser':
-        #    return RegisterUserCommand(self._app_data)
+        if cmd.lower() == 'admin':
+            return AdminLoginLogoutCommand(params, self._app_data)
         #if cmd.lower() == 'login':
         #    return LoginCommand(self._app_data)
         #if cmd.lower() == 'logout':

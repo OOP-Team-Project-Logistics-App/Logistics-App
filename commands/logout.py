@@ -1,0 +1,2 @@
+class LogoutCommand:
+    pass
