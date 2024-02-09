@@ -7,11 +7,21 @@ from models.truck import Truck
 class Route:
     id_count = 0
 
-    def __init__(self, locations: list[str], assigned_truck: Truck = None):
+    def __init__(self, set_off_time, locations: list[str], assigned_truck: Truck = None):
+        self._set_off_time = datetime.strptime(f"2024-{set_off_time}", "%Y-%m/%d/%H")
+        if datetime.now() > self._set_off_time:
+            raise ValueError("Set off time cannot be in the past")
+        if datetime.now() + timedelta(days=30) < self._set_off_time:
+            raise ValueError("Set off time cannot be more than 30 days in the future")
+
         self._id = self.id_counter()
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
+
+    @property
+    def set_off_time(self):
+        return self._set_off_time
 
     @classmethod
     def id_counter(cls):
@@ -65,9 +75,9 @@ class Route:
         #departure time needs to be able to be changed no earlier than datetime.now
         #update_current_day changes route progress if we are making package_status method for each package
         #move departure time to create_delivery_route?
-        #make checks for departure time no longer than 30 days from today
         #
-        departure_time = datetime(datetime.now().year, datetime.now().month, datetime.now().day, 6) + timedelta(days=1)
+
+        departure_time = self._set_off_time
         output_string = f"Route {self._id}: "
         for i in range(len(self._locations) - 1):
             arrival_time = departure_time + calculate_travel_time(self._locations[i], self._locations[i + 1])

@@ -8,7 +8,9 @@ class CreateDeliveryRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
-        new_route = Route(self.params)
+        set_off_time = self.params[0]
+        locations = self.params[1:]
+        new_route = Route(set_off_time, locations)
         self.app_data.add_route(new_route)
 
         return str(new_route)

@@ -7,5 +7,3 @@ class InitializeTrucksCommand:
 
     def execute(self):
         self.app_data.initialize_trucks()
-
-        return "Trucks created."

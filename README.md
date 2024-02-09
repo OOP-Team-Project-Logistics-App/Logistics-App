@@ -17,10 +17,9 @@ Teamwork in Python OOP Module in Telerik Academy
 
 Creates routes, assigns trucks and packages by ids to them. Shows information about routes through the "viewroute" command.
 ```
-createtrucks
-createdeliveryroute Brisbane Sydney Melbourne
-createdeliveryroute Sydney Melbourne Adelaide
-createdeliveryroute Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
+createdeliveryroute 2/19/21 Brisbane Sydney Melbourne
+createdeliveryroute 2/19/21 Sydney Melbourne Adelaide
+createdeliveryroute 2/19/21 Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
 assigntrucktoroute 1
 createdeliverypackage Sydney Melbourne 5500 0412345678
 searchroute 1
@@ -38,7 +37,6 @@ end
 ```
 
 ```
-Trucks created.
 Route 1: Brisbane -> Sydney -> Melbourne created.
 Route 2: Sydney -> Melbourne -> Adelaide created.
 Route 3: Perth -> Adelaide -> Melbourne -> Sydney -> Brisbane -> Darwin -> Alice_Springs created.
@@ -48,8 +46,8 @@ Package with id 1 created. --
 -- Delivery to: Melbourne --
 -- Weight: 5500kg --
 -- Contact Info: 0412345678 --
-Route found for package 1: Route 1: Brisbane (Feb 9th 06:00h) -> Sydney (Feb 9th 16:26h) -> Melbourne (Feb 10th 02:31h)
-Route found for package 1: Route 2: Sydney (Feb 9th 06:00h) -> Melbourne (Feb 9th 16:04h) -> Adelaide (Feb 10th 00:24h)
+Route found for package 1: Route 1: Brisbane (Feb 19th 21:00h) -> Sydney (Feb 20th 07:26h) -> Melbourne (Feb 20th 17:31h)
+Route found for package 1: Route 2: Sydney (Feb 19th 21:00h) -> Melbourne (Feb 20th 07:04h) -> Adelaide (Feb 20th 15:24h)
 Package with id 1 was assigned to route 1.
 Truck with id 1002 was assigned to route id 2.
 Truck with id 1026 was assigned to route id 3.
@@ -65,22 +63,22 @@ Package with id 3 created. --
 -- Contact Info: 0512345678 --
 Package with id 2 was assigned to route 3.
 Package with id 3 was assigned to route 3.
-Information about Route 1:
-Route 1: Brisbane (Feb 9th 06:00h) -> Sydney (Feb 9th 16:26h) -> Melbourne (Feb 10th 02:31h)
-Truck ID: 1001, Model: Scania, Capacity: 42000kg, Max range: 8000km
+Information about Route 1: 
+Route 1: Brisbane (Feb 19th 21:00h) -> Sydney (Feb 20th 07:26h) -> Melbourne (Feb 20th 17:31h) 
+Truck ID: 1001, Model: Scania, Capacity: 42000kg, Max range: 8000km 
 Packages:
 Package ID 1:
 Sydney -> Melbourne
 Weight: 5500kg
 Contact info: 0412345678
-Information about Route 2:
-Route 2: Sydney (Feb 9th 06:00h) -> Melbourne (Feb 9th 16:04h) -> Adelaide (Feb 10th 00:24h)
-Truck ID: 1002, Model: Scania, Capacity: 42000kg, Max range: 8000km
+Information about Route 2: 
+Route 2: Sydney (Feb 19th 21:00h) -> Melbourne (Feb 20th 07:04h) -> Adelaide (Feb 20th 15:24h) 
+Truck ID: 1002, Model: Scania, Capacity: 42000kg, Max range: 8000km 
 Packages:
-
-Information about Route 3:
-Route 3: Perth (Feb 9th 06:00h) -> Adelaide (Feb 10th 14:00h) -> Melbourne (Feb 10th 22:20h) -> Sydney (Feb 11th 08:25h) -> Brisbane (Feb 11th 18:52h) -> Darwin (Feb 13th 10:15h) -> Alice_Springs (Feb 14th 03:27h)
-Truck ID: 1026, Model: Actros, Capacity: 26000kg, Max range: 13000km
+No packages assigned to this route.
+Information about Route 3: 
+Route 3: Perth (Feb 19th 21:00h) -> Adelaide (Feb 21st 05:00h) -> Melbourne (Feb 21st 13:20h) -> Sydney (Feb 21st 23:25h) -> Brisbane (Feb 22nd 09:52h) -> Darwin (Feb 24th 01:15h) -> Alice_Springs (Feb 24th 18:27h) 
+Truck ID: 1026, Model: Actros, Capacity: 26000kg, Max range: 13000km 
 Packages:
 Package ID 2:
 Adelaide -> Darwin
