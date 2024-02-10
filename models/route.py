@@ -39,7 +39,7 @@ class Route:
     def packages(self):
         return tuple(self._packages)
     
-    def add_location(self, location):
+    def add_location(self, location):       #Each location needs arrival/layover time
         self._locations.append(location)
         
     def add_package(self, package):

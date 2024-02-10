@@ -8,6 +8,7 @@ from commands.assign_package_to_route import AssignPackageToRouteCommand
 from errors.invalid_command import InvalidCommand
 from commands.admin_login import AdminLoginLogoutCommand
 from commands.update_current_day import UpdateCurrentDayCommand
+from commands.package_status import PackageStatusCommand
 
 
 class CommandFactory:
@@ -19,12 +20,12 @@ class CommandFactory:
 
         if cmd.lower() == 'admin':
             return AdminLoginLogoutCommand(params, self._app_data)
-        #if cmd.lower() == 'login':
-        #    return LoginCommand(self._app_data)
+        if cmd.lower() == 'packagestatus':
+            return PackageStatusCommand(params, self._app_data)
         #if cmd.lower() == 'logout':
         #    return LogoutCommand(self._app_data)
         if cmd.lower() == 'updateday':
-            return UpdateCurrentDayCommand(params, self._app_data)
+            return UpdateCurrentDayCommand(params)
         if cmd.lower() == "createdeliveryroute":
             return CreateDeliveryRouteCommand(params, self._app_data)
         if cmd.lower() == "createdeliverypackage":

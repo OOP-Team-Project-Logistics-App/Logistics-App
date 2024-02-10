@@ -1,15 +1,24 @@
 from models.constants.distance_data import Distance
-
+from models.route import Route
 
 class Package:
     id_count = 0
 
-    def __init__(self, start_location: str, end_location: str, weight: int, contact_info: str):
+    def __init__(self, start_location: str, end_location: str, weight: int, contact_info: str, package_assigned_route: Route = None):
         self._id = self.id_counter()
         self.start_location = start_location
         self.end_location = end_location
         self._weight = weight
         self.contact_info = contact_info
+        self._package_assigned_route = package_assigned_route
+
+    @property
+    def package_assigned_route(self):
+        return self._package_assigned_route
+
+    @package_assigned_route.setter
+    def package_assigned_route(self, value: Route):
+        self._package_assigned_route = value
 
     @classmethod
     def id_counter(cls):
@@ -69,3 +78,4 @@ class Package:
                 f"-- Delivery to: {self.end_location} --\n" \
                 f"-- Weight: {self._weight}kg --\n" \
                 f"-- Contact Info: {self.contact_info} --"
+
