@@ -39,7 +39,7 @@ class Route:
     def packages(self):
         return tuple(self._packages)
     
-    def add_location(self, location):       #Each location needs arrival/layover time
+    def add_location(self, location):
         self._locations.append(location)
         
     def add_package(self, package):
@@ -60,24 +60,23 @@ class Route:
     def route_info(self) -> str:
         """
         The method calculates and returns a string with the time when a truck departures from the start location \
-        and arrival time of the end location. If the cities in the route are more than two, the departure time \
-        and the arrival time of the in between cities match. Departure time of the start location will always be 6 AM \
+        and arrival time of the end location. If the cities in the route are more than two, the arrival time \
+        of the in between cities will be displayed. Departure time of each location will always be 6 AM \
         on the next day from the current one.
 
             Returns:
-                    str: A string representation of the route's journey schedule.
+                str: A string representation of the route's journey schedule.
         """
-        #departure time needs to be able to be changed no earlier than datetime.now
-        #update_current_day changes route progress if we are making package_status method for each package
-
-
         departure_time = self._set_off_time
         output_string = f"Route {self._id}: "
-        for i in range(len(self._locations) - 1):
-            arrival_time = departure_time + calculate_travel_time(self._locations[i], self._locations[i + 1])
-            output_string += f"{self._locations[i]} ({format_date(departure_time)}) -> "
-            departure_time = arrival_time
-        return output_string + f"{self._locations[-1]} ({format_date(departure_time)})"
+        output_string += f"{self._locations[0]} ({format_date(departure_time)}) -> "
+        for i in range(1, len(self._locations) - 1):
+            arrival_time = departure_time + calculate_travel_time(self._locations[i-1], self._locations[i])
+            output_string += f"{self._locations[i]} ({format_date(arrival_time)}) -> "
+            departure_time = arrival_time.replace(hour=6, minute=0) + timedelta(days=1)
+        arrival_time = departure_time + calculate_travel_time(self._locations[-2], self._locations[-1])
+        output_string += f"{self._locations[-1]} ({format_date(arrival_time)})"
+        return output_string
 
     def __str__(self):
         return f"Route {self._id}: {' -> '.join(self._locations)} created."

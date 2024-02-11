@@ -1,4 +1,5 @@
 from models.constants.distance_data import Distance
+from models.constants.package_status import PackageStatus
 from models.route import Route
 
 class Package:
@@ -11,14 +12,7 @@ class Package:
         self._weight = weight
         self.contact_info = contact_info
         self._package_assigned_route = package_assigned_route
-
-    @property
-    def package_assigned_route(self):
-        return self._package_assigned_route
-
-    @package_assigned_route.setter
-    def package_assigned_route(self, value: Route):
-        self._package_assigned_route = value
+        self._status = PackageStatus.NOT_ASSIGNED
 
     @classmethod
     def id_counter(cls):
@@ -65,6 +59,22 @@ class Package:
             self._contact_info = info
         else:
             raise ValueError("Invalid contact information.")
+        
+    @property
+    def package_assigned_route(self):
+        return self._package_assigned_route
+
+    @package_assigned_route.setter
+    def package_assigned_route(self, route: Route):
+        self._package_assigned_route = route
+        
+    @property
+    def status(self):
+        return self._status
+
+    @status.setter
+    def status(self, status: PackageStatus):
+        self._status = status
 
     def package_info(self):
         return f"Package ID {self._id}:\n" \

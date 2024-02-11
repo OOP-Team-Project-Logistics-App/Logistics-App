@@ -48,8 +48,8 @@ Package with id 1 created. --
 -- Delivery to: Melbourne --
 -- Weight: 5500kg --
 -- Contact Info: 0412345678 --
-Route found for package 1: Route 1: Brisbane (Feb 16th 06:00h) -> Sydney (Feb 16th 16:26h) -> Melbourne (Feb 17th 02:31h)
-Route found for package 1: Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 00:24h)
+Route found for package 1: Route 1: Brisbane (Feb 16th 06:00h) -> Sydney (Feb 16th 16:26h) -> Melbourne (Feb 17th 16:05h)
+Route found for package 1: Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 14:20h)
 Package with id 1 was assigned to route 1.
 Truck with id 1002 was assigned to route id 2.
 Truck with id 1026 was assigned to route id 3.
@@ -66,16 +66,16 @@ Package with id 3 created. --
 Package with id 2 was assigned to route 3.
 Package with id 3 was assigned to route 3.
 Set off time cannot be more than 30 days in the future
-Current day is now 2024-02-21 14:28:00
+Current day is now 2024-02-21 17:50:00
 Set off time cannot be in the past
-Information about Route 2: 
-Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 00:24h) 
-Truck ID: 1002, Model: Scania, Capacity: 42000kg, Max range: 8000km 
+Information about Route 2:
+Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 14:20h)
+Truck ID: 1002, Model: Scania, Capacity: 42000kg, Max range: 8000km
 Packages:
 No packages assigned to this route.
-Information about Route 3: 
-Route 3: Perth (Feb 22nd 06:00h) -> Adelaide (Feb 24th 10:00h) -> Melbourne (Feb 24th 18:20h) -> Sydney (Feb 25th 04:25h) -> Brisbane (Feb 25th 14:52h) -> Darwin (Feb 28th 02:15h) -> Alice_Springs (Feb 29th 05:27h) 
-Truck ID: 1026, Model: Actros, Capacity: 26000kg, Max range: 13000km 
+Information about Route 3:
+Route 3: Perth (Feb 22nd 06:00h) -> Adelaide (Feb 24th 10:00h) -> Melbourne (Feb 25th 14:20h) -> Sydney (Feb 26th 16:05h) -> Brisbane (Feb 27th 16:27h) -> Darwin (Mar 1st 17:23h) -> Alice_Springs (Mar 3rd 09:12h)
+Truck ID: 1026, Model: Actros, Capacity: 26000kg, Max range: 13000km
 Packages:
 Package ID 2:
 Adelaide -> Darwin
