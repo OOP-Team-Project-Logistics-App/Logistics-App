@@ -17,9 +17,9 @@ Teamwork in Python OOP Module in Telerik Academy
 
 Creates routes, assigns trucks and packages by ids to them. Shows information about routes through the "viewroute" command.
 ```
-createdeliveryroute 2/16/21 Brisbane Sydney Melbourne
-createdeliveryroute 2/21/21 Sydney Melbourne Adelaide
-createdeliveryroute 2/22/21 Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
+createdeliveryroute 2/16 Brisbane Sydney Melbourne
+createdeliveryroute 2/21 Sydney Melbourne Adelaide
+createdeliveryroute 2/22 Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
 assigntrucktoroute 1
 createdeliverypackage Sydney Melbourne 5500 0412345678
 searchroute 1
@@ -30,9 +30,9 @@ createdeliverypackage Adelaide Darwin 6000 0512345678
 createdeliverypackage Perth Sydney 3000 0512345678
 assignpackagetoroute 2 3
 assignpackagetoroute 3 3
-createdeliveryroute 3/20/21 Adelaide Sydney Brisbane Darwin
+createdeliveryroute 3/20 Adelaide Sydney Brisbane Darwin
 updateday 10
-createdeliveryroute 2/18/21 Brisbane Sydney Melbourne
+createdeliveryroute 2/18 Brisbane Sydney Melbourne
 viewroute 2
 viewroute 3
 end
@@ -48,8 +48,8 @@ Package with id 1 created. --
 -- Delivery to: Melbourne --
 -- Weight: 5500kg --
 -- Contact Info: 0412345678 --
-Route found for package 1: Route 1: Brisbane (Feb 16th 21:00h) -> Sydney (Feb 17th 07:26h) -> Melbourne (Feb 17th 17:31h)
-Route found for package 1: Route 2: Sydney (Feb 21st 21:00h) -> Melbourne (Feb 22nd 07:04h) -> Adelaide (Feb 22nd 15:24h)
+Route found for package 1: Route 1: Brisbane (Feb 16th 06:00h) -> Sydney (Feb 16th 16:26h) -> Melbourne (Feb 17th 02:31h)
+Route found for package 1: Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 00:24h)
 Package with id 1 was assigned to route 1.
 Truck with id 1002 was assigned to route id 2.
 Truck with id 1026 was assigned to route id 3.
@@ -66,15 +66,15 @@ Package with id 3 created. --
 Package with id 2 was assigned to route 3.
 Package with id 3 was assigned to route 3.
 Set off time cannot be more than 30 days in the future
-Current day is now 2024-02-19 21:22:00
+Current day is now 2024-02-21 14:28:00
 Set off time cannot be in the past
 Information about Route 2: 
-Route 2: Sydney (Feb 21st 21:00h) -> Melbourne (Feb 22nd 07:04h) -> Adelaide (Feb 22nd 15:24h) 
+Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 00:24h) 
 Truck ID: 1002, Model: Scania, Capacity: 42000kg, Max range: 8000km 
 Packages:
 No packages assigned to this route.
 Information about Route 3: 
-Route 3: Perth (Feb 22nd 21:00h) -> Adelaide (Feb 24th 05:00h) -> Melbourne (Feb 24th 13:20h) -> Sydney (Feb 24th 23:25h) -> Brisbane (Feb 25th 09:52h) -> Darwin (Feb 27th 01:15h) -> Alice_Springs (Feb 27th 18:27h) 
+Route 3: Perth (Feb 22nd 06:00h) -> Adelaide (Feb 24th 10:00h) -> Melbourne (Feb 24th 18:20h) -> Sydney (Feb 25th 04:25h) -> Brisbane (Feb 25th 14:52h) -> Darwin (Feb 28th 02:15h) -> Alice_Springs (Feb 29th 05:27h) 
 Truck ID: 1026, Model: Actros, Capacity: 26000kg, Max range: 13000km 
 Packages:
 Package ID 2:

@@ -19,4 +19,3 @@ class PackageStatusCommand:
                 pass
         else:
             return "The package is not assigned yet"
-            pass
