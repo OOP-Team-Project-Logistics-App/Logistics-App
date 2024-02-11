@@ -6,11 +6,4 @@ class AdminLoginLogoutCommand:
         self.app_data = app_data
 
     def execute(self):
-        password_or_logout = self.params
-
-        if password_or_logout.lower() == "logout":
-            self.app_data.log_admin("logout")
-        if password_or_logout == "password":
-            self.app_data.log_admin("password")
-
-
+        pass

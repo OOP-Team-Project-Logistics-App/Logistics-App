@@ -1,7 +1,6 @@
 from models.route import Route
 from models.package import Package
 from models.truck import Truck
-from models.employee import Employee
 
 
 class ApplicationData:
@@ -9,7 +8,6 @@ class ApplicationData:
         self._delivery_routes: list[Route] = []
         self._delivery_packages: list[Package] = []
         self._trucks: list[Truck] = []
-        self._log_admin = False
 
     @property
     def delivery_routes(self):
@@ -72,17 +70,3 @@ class ApplicationData:
         if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
-
-
-    @property
-    def log_admin(self):
-        return self._log_admin
-
-    @log_admin.setter
-    def log_admin(self, password_or_logout):
-        if password_or_logout == "password":
-            self._log_admin = True
-        elif password_or_logout == "logout":
-            self._log_admin = False
-
-

@@ -18,12 +18,8 @@ class CommandFactory:
     def create(self, input_line):
         cmd, *params = input_line.split()
 
-        if cmd.lower() == 'admin':
-            return AdminLoginLogoutCommand(params, self._app_data)
         if cmd.lower() == 'packagestatus':
             return PackageStatusCommand(params, self._app_data)
-        #if cmd.lower() == 'logout':
-        #    return LogoutCommand(self._app_data)
         if cmd.lower() == 'updateday':
             return UpdateCurrentDayCommand(params)
         if cmd.lower() == "createdeliveryroute":
