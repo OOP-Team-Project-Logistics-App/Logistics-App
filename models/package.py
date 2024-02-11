@@ -76,6 +76,13 @@ class Package:
     def status(self, status: PackageStatus):
         self._status = status
 
+    def update_package_status(self, current_city):
+        #not entirely implemented
+        if current_city == self.start_location:
+            self._status = PackageStatus.EN_ROUTE
+        elif current_city == self.end_location:
+            self._status = PackageStatus.DELIVERED
+
     def package_info(self):
         return f"Package ID {self._id}:\n" \
                 f"{self.start_location} -> {self.end_location}\n" \
@@ -88,4 +95,3 @@ class Package:
                 f"-- Delivery to: {self.end_location} --\n" \
                 f"-- Weight: {self._weight}kg --\n" \
                 f"-- Contact Info: {self.contact_info} --"
-

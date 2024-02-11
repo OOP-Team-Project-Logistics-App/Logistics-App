@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from models.constants.date_and_time_data import calculate_travel_time, format_date
 from models.constants.distance_data import Distance
+from models.constants.package_status import PackageStatus
 from models.truck import Truck
 
 
