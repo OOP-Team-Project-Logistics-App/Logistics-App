@@ -32,7 +32,7 @@ assignpackagetoroute 2 3
 assignpackagetoroute 3 3
 createdeliveryroute 3/20 Adelaide Sydney Brisbane Darwin
 updateday 10
-createdeliveryroute 2/18 Brisbane Sydney Melbourne
+createdeliveryroute 2/9 Brisbane Sydney Melbourne
 viewroute 2
 viewroute 3
 end
@@ -66,7 +66,7 @@ Package with id 3 created. --
 Package with id 2 was assigned to route 3.
 Package with id 3 was assigned to route 3.
 Set off time cannot be more than 30 days in the future
-Current day is now 2024-02-21 17:50:00
+Current day is now Feb 21st 18:16h.
 Set off time cannot be in the past
 Information about Route 2:
 Route 2: Sydney (Feb 21st 06:00h) -> Melbourne (Feb 21st 16:04h) -> Adelaide (Feb 22nd 14:20h)

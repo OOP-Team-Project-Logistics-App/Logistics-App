@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from models.constants.distance_data import Distance
 
 
@@ -10,7 +10,7 @@ def calculate_travel_time(departure_city, arrival_city):
     if time > 14:
         days = time // 14
         time = time % 14
-    return timedelta(days= days,hours=time)
+    return timedelta(days = days, hours = time)
 
 def format_date(date):
     """
@@ -31,3 +31,10 @@ def format_date(date):
         suffix = suffix_list[day % 10]
     formatted_date = date.strftime(f"%b {day}{suffix} %H:%Mh")
     return formatted_date
+
+def update_current_day(add_days):
+    current_day = datetime.now()
+    if add_days < 0:
+        raise ValueError("Cannot return to the past, you can only add days")
+    current_day += timedelta(days = add_days)
+    return f"Current day is now {format_date(current_day)}."
