@@ -70,14 +70,11 @@ class Route:
         """
         departure_time = self._set_off_time
         output_string = f"Route {self._id}: "
-        output_string += f"{self._locations[0]} ({format_date(departure_time)}) -> "
-        for i in range(1, len(self._locations) - 1):
-            arrival_time = departure_time + calculate_travel_time(self._locations[i - 1], self._locations[i])
-            output_string += f"{self._locations[i]} ({format_date(arrival_time)}) -> "
-            departure_time = arrival_time.replace(hour = 6, minute = 0) + timedelta(days = 1)
-        arrival_time = departure_time + calculate_travel_time(self._locations[-2], self._locations[-1])
-        output_string += f"{self._locations[-1]} ({format_date(arrival_time)})"
-        return output_string
+        for i in range(len(self._locations) - 1):
+            arrival_time = departure_time + calculate_travel_time(self._locations[i], self._locations[i + 1])
+            output_string += f"{self._locations[i]} ({format_date(departure_time)}) -> "
+            departure_time = arrival_time
+        return output_string + f"{self._locations[-1]} ({format_date(departure_time)})"
 
     def __str__(self):
         return f"Route {self._id}: {' -> '.join(self._locations)} created."

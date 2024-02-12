@@ -17,9 +17,9 @@ Teamwork in Python OOP Module in Telerik Academy
 
 Creates routes, assigns trucks and packages by ids to them. Possible package routes are shown through the "searchroute" command so we can get information about which route is most suitable for our package delivery. Shows information about routes through the "viewroute" command.
 ```
-createdeliveryroute 2/16 Brisbane Sydney Melbourne
-createdeliveryroute 2/21 Sydney Melbourne Adelaide
-createdeliveryroute 2/22 Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
+createdeliveryroute 2/16/21 Brisbane Sydney Melbourne
+createdeliveryroute 2/21/20 Sydney Melbourne Adelaide
+createdeliveryroute 2/22/10 Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
 assigntrucktoroute 1
 createdeliverypackage Sydney Melbourne 5500 0412345678
 searchroute 1
@@ -35,9 +35,9 @@ assignpackagetoroute 2 3
 assignpackagetoroute 3 3
 packagestatus 3 Melbourne
 packagestatus 3 Sydney
-createdeliveryroute 3/20 Adelaide Sydney Brisbane Darwin
+createdeliveryroute 3/20/9 Adelaide Sydney Brisbane Darwin
 updateday 10
-createdeliveryroute 2/9 Brisbane Sydney Melbourne
+createdeliveryroute 2/9/6 Brisbane Sydney Melbourne
 viewroute 2
 viewroute 3
 end

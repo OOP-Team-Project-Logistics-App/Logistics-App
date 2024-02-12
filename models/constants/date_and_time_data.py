@@ -6,11 +6,7 @@ def calculate_travel_time(departure_city, arrival_city):
     speed = 87
     distance = Distance.find_distance(departure_city, arrival_city)
     time = distance / speed
-    days = 0
-    if time > 14:
-        days = time // 14
-        time = time % 14
-    return timedelta(days = days, hours = time)
+    return timedelta(hours = time)
 
 def format_date(date):
     """
