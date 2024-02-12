@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 from models.constants.truck_status import TruckStatus
 
 
-=======
->>>>>>> fab894505400dfea766df792474968ca85e115c3
 class Truck:
     def __init__(self, id: int, name: str, capacity: int, max_range: int):
         self._id = id
@@ -11,10 +8,7 @@ class Truck:
         self._capacity = capacity
         self._remaining_capacity = capacity
         self._max_range = max_range
-<<<<<<< HEAD
         self._status = TruckStatus.AVAILABLE
-=======
->>>>>>> fab894505400dfea766df792474968ca85e115c3
         self._assigned_time_period = None
 
     @property
@@ -38,23 +32,15 @@ class Truck:
         return self._max_range
     
     @property
-<<<<<<< HEAD
     def status(self):
         return self._status
-=======
-    def assigned(self):
-        return self._assigned
->>>>>>> fab894505400dfea766df792474968ca85e115c3
 
     @property
     def assigned_time_period(self):
         return self._assigned_time_period
 
     def assign(self, time_period):
-<<<<<<< HEAD
         self._status = TruckStatus.NOT_AVAILABLE
-=======
->>>>>>> fab894505400dfea766df792474968ca85e115c3
         self._assigned_time_period = time_period
     
     def add_package_weight(self, package):

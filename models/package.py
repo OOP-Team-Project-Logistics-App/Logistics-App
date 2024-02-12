@@ -1,3 +1,4 @@
+from models.constants.date_and_time_data import calculate_travel_time
 from models.constants.distance_data import Distance
 from models.constants.package_status import PackageStatus
 from models.route import Route
@@ -74,16 +75,18 @@ class Package:
     def status(self):
         return self._status
 
-    @status.setter
-    def status(self, status: PackageStatus):
-        self._status = status
-
-    def update_package_status(self, current_city):
-        #not entirely implemented
-        if current_city == self.start_location:
-            self._status = PackageStatus.EN_ROUTE
-        elif current_city == self.end_location:
-            self._status = PackageStatus.DELIVERED
+    def update_package_status(self, current_time):
+        if self._package_assigned_route is None:
+            self.status = PackageStatus.NOT_ASSIGNED
+        else:
+            departure_time = self._package_assigned_route.set_off_time
+            for i in range(len(self._package_assigned_route.locations) - 1):
+                arrival_time = departure_time + calculate_travel_time(self._package_assigned_route.locations[i], self._package_assigned_route.locations[i + 1])
+                if self._package_assigned_route.locations[i] == self.start_location and self._package_assigned_route.locations[i + 1] == self.end_location:
+                    if departure_time <= current_time < arrival_time:
+                        self.status = PackageStatus.EN_ROUTE
+                    elif current_time >= arrival_time:
+                        self.status = PackageStatus.DELIVERED
 
     def package_info(self):
         return f"Package ID {self._id}:\n" \
