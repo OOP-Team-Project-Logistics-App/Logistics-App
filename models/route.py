@@ -23,6 +23,10 @@ class Route:
     @property
     def set_off_time(self):
         return self._set_off_time
+    
+    @set_off_time.setter
+    def set_off_time(self, value):
+        self._set_off_time = value
 
     @classmethod
     def id_counter(cls):
