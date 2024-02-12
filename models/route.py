@@ -65,9 +65,7 @@ class Route:
         return total
     
     def calculate_arrival_time(self):
-        for i in range(len(self._locations) - 1):
-            self.set_off_time += calculate_travel_time(self._locations[i], self._locations[i + 1])
-        self._arrival_time = self.set_off_time
+        self._arrival_time = self.set_off_time + timedelta(hours=self.total_distance()/87)
         return self._arrival_time
     
     def total_weight(self):
