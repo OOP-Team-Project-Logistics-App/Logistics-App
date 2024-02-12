@@ -21,14 +21,14 @@ createdeliveryroute 2/16/21 Brisbane Sydney Melbourne
 createdeliveryroute 2/21/20 Sydney Melbourne Adelaide
 createdeliveryroute 2/22/10 Perth Adelaide Melbourne Sydney Brisbane Darwin Alice_Springs
 assigntrucktoroute 1
-createdeliverypackage Sydney Melbourne 5500 0412345678
+createdeliverypackage Sydney Melbourne 5500 test@email_1.com
 searchroute 1
 assignpackagetoroute 1 1
 viewroute 1
 assigntrucktoroute 2
 assigntrucktoroute 3
-createdeliverypackage Adelaide Darwin 6000 0512345678
-createdeliverypackage Perth Sydney 3000 0512345678
+createdeliverypackage Adelaide Darwin 6000 test@email_2.com
+createdeliverypackage Perth Sydney 3000 test@email_3.com
 searchroute 2
 searchroute 3
 assignpackagetoroute 2 3

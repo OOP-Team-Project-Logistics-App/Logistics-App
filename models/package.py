@@ -57,8 +57,7 @@ class Package:
 
     @contact_info.setter
     def contact_info(self, info):
-        #might have to be switched to an email, not a phone number
-        if (info.startswith("04") or info.startswith("05")) and len(info) == 10:
+        if "@" in info and "." in info.split("@")[1]:
             self._contact_info = info
         else:
             raise ValueError("Invalid contact information.")
