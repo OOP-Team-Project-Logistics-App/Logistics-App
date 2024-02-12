@@ -9,5 +9,3 @@ engine = Engine(cmd_factory)
 
 InitializeTrucksCommand(app_data).execute()
 engine.start()
-
-
