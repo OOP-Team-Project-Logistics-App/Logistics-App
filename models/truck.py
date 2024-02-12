@@ -1,10 +1,13 @@
+
+
 class Truck:
     def __init__(self, id: int, name: str, capacity: int, max_range: int):
         self._id = id
         self._name = name
         self._capacity = capacity
         self._max_range = max_range
-        #self._busy_time = time_period
+        self._busy_time = {}
+
 
     @property
     def id(self):
