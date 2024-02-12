@@ -2,6 +2,7 @@ from models.constants.distance_data import Distance
 from models.constants.package_status import PackageStatus
 from models.route import Route
 
+
 class Package:
     id_count = 0
 

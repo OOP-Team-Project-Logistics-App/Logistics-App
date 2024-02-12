@@ -15,7 +15,7 @@ Teamwork in Python OOP Module in Telerik Academy
 
 ## **TEMPORARY INPUT AND OUTPUT FOR TESTS**
 
-Creates routes, assigns trucks and packages by ids to them. Shows information about routes through the "viewroute" command.
+Creates routes, assigns trucks and packages by ids to them. Possible package routes are shown through the "searchroute" command so we can get information about which route is most suitable for our package delivery. Shows information about routes through the "viewroute" command.
 ```
 createdeliveryroute 2/16 Brisbane Sydney Melbourne
 createdeliveryroute 2/21 Sydney Melbourne Adelaide

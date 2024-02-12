@@ -35,6 +35,6 @@ def format_date(date):
 def update_current_day(add_days):
     current_day = datetime.now()
     if add_days < 0:
-        raise ValueError("Cannot return to the past, you can only add days")
+        raise ValueError("Cannot set a date in the past, you can only add days.")
     current_day += timedelta(days = add_days)
     return f"Current day is now {format_date(current_day)}."
