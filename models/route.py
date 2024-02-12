@@ -23,6 +23,10 @@ class Route:
     @property
     def set_off_time(self):
         return self._set_off_time
+    
+    @set_off_time.setter
+    def set_off_time(self, value):
+        self._set_off_time = value
 
     @classmethod
     def id_counter(cls):
@@ -61,11 +65,7 @@ class Route:
         return total
     
     def calculate_arrival_time(self):
-        departure_time = self.set_off_time
-        for i in range(len(self._locations) - 1):
-            arrival_time = departure_time + calculate_travel_time(self._locations[i], self._locations[i + 1])
-            departure_time = arrival_time
-        self._arrival_time = arrival_time
+        self._arrival_time = self.set_off_time + timedelta(hours=self.total_distance()/87)
         return self._arrival_time
     
     def total_weight(self):
