@@ -14,6 +14,16 @@ class Route:
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
+    #     self._arrival_time = None
+    #
+    # def calculate_arrival_time(self):
+    #     for i in range(len(self._locations) - 1):
+    #         self._arrival_time = self.set_off_time + calculate_travel_time(self._locations[i], self._locations[i + 1])
+    #     return self.arrival_time
+    #
+    # @property
+    # def arrival_time(self):
+    #     return self._arrival_time
 
     @property
     def set_off_time(self):

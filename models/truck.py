@@ -4,6 +4,7 @@ class Truck:
         self._name = name
         self._capacity = capacity
         self._max_range = max_range
+        #self._busy_time = time_period
 
     @property
     def id(self):

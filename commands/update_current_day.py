@@ -9,3 +9,4 @@ class UpdateCurrentDayCommand:
     def execute(self):
         current_day = update_current_day(self.add_days)
         return str(current_day)
+

@@ -33,11 +33,11 @@ class ApplicationData:
         self._trucks.extend([Truck(id, "Man", 37000, 10000) for id in range(1011, 1026)])
         self._trucks.extend([Truck(id, "Actros", 26000, 13000) for id in range(1026, 1041)])
 
-    def find_suitable_truck(self, route: Route):
+    def find_suitable_truck(self, route: Route):        # TO CHANGE
         for idx, truck in enumerate(self._trucks):
             if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
                 route.assign_truck(truck)
-                self._trucks.pop(idx)
+                self._trucks.pop(idx)       #we shouldnt pop
                 return truck
         raise ValueError("There is no suitable truck for this route.")
 
