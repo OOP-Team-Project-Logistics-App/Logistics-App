@@ -14,8 +14,7 @@ class Route:
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
-        for i in range(len(self._locations) - 1):
-            self._arrival_time = self.set_off_time + timedelta(hours=self.total_distance()/87)
+        self._arrival_time = None
 
     @property
     def arrival_time(self):
@@ -60,6 +59,12 @@ class Route:
         for i in range(len(self.locations) - 1):
             total += Distance.find_distance(self.locations[i], self.locations[i + 1])
         return total
+    
+    def calculate_arrival_time(self):
+        for i in range(len(self._locations) - 1):
+            self.set_off_time += calculate_travel_time(self._locations[i], self._locations[i + 1])
+        self._arrival_time = self.set_off_time
+        return self._arrival_time
     
     def total_weight(self):
         return sum(package.weight for package in self.packages)
