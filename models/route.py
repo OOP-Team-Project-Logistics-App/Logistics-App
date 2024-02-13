@@ -75,9 +75,7 @@ class Route:
             Returns:
                 str: A string representation of the route's journey schedule.
         """
-        output_string = f"Route {self._id}: "
-        for key, value in self._locations.items():
-            output_string += f"{key} ({format_date(value)}) -> "
+        output_string = f"Route {self._id}: {' -> '.join(f"{key} {format_date(value)}" for key, value in self._locations.items())}"
         return output_string
 
     def __str__(self):
