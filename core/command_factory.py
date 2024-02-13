@@ -6,9 +6,11 @@ from commands.search_route import SearchRouteCommand
 from commands.view_route import ViewRouteCommand
 from commands.assign_truck_to_route import AssignTruckToRouteCommand
 from commands.assign_package_to_route import AssignPackageToRouteCommand
+from commands.view_unassigned_packages import ViewUnassignedPackages
 from errors.invalid_command import InvalidCommand
 from commands.update_current_day import UpdateCurrentDayCommand
 from commands.package_status import PackageStatusCommand
+from models.supervisor import Supervisor
 
 
 class CommandFactory:
@@ -38,5 +40,7 @@ class CommandFactory:
             return AssignPackageToRouteCommand(params, self._app_data)
         if cmd.lower() == "getpackageinfo":
             return GetPackageInformation(params, self._app_data)
+        if cmd.lower() == "viewunassignedpackages":
+            return ViewUnassignedPackages(params, self._app_data)
 
         raise InvalidCommand(cmd)

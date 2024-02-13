@@ -71,3 +71,10 @@ class ApplicationData:
         if package._start_location in route.locations and package._end_location in route.locations:
             route.add_package(package)
         raise ValueError("Package's start and end location do not fit the route.")
+    
+    def view_unassigned_packages(self):
+        unassigned_packages = [package for package in self.delivery_packages if package._package_assigned_route is None]
+        formatted_packages = [f"Package ID: {package.id}\n"
+                            f"Start Location: {package.start_location}\n"
+                            f"End Location: {package.end_location}" for package in unassigned_packages]
+        return "\n".join(formatted_packages)
