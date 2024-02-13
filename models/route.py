@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from models.constants.date_and_time_data import calculate_travel_time, format_date
 from models.constants.distance_data import Distance
-from models.constants.package_status import PackageStatus
 from models.truck import Truck
 
 
@@ -25,7 +24,7 @@ class Route:
         return self._set_off_time
     
     @set_off_time.setter
-    def set_off_time(self, value):
+    def set_off_time(self, value: datetime):
         self._set_off_time = value
 
     @classmethod
@@ -74,9 +73,7 @@ class Route:
     def route_info(self) -> str:
         """
         The method calculates and returns a string with the time when a truck departures from the start location \
-        and arrival time of the end location. If the cities in the route are more than two, the arrival time \
-        of the in between cities will be displayed. Departure time of each location will always be 6 AM \
-        on the next day from the current one.
+        and arrival time of the end location.
 
             Returns:
                 str: A string representation of the route's journey schedule.

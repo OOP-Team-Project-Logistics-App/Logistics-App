@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+from models.constants.date_and_time_data import format_date
 from models.route import Route
 from models.package import Package
 from models.truck import Truck
@@ -8,6 +10,7 @@ class ApplicationData:
         self._delivery_routes: list[Route] = []
         self._delivery_packages: list[Package] = []
         self._trucks: list[Truck] = []
+        self._current_day = datetime.now()
 
     @property
     def delivery_routes(self):
@@ -20,6 +23,10 @@ class ApplicationData:
     @property
     def trucks(self):
         return tuple(self._trucks)
+    
+    @property
+    def current_day(self):
+        return self._current_day
 
     def add_route(self, route: Route):
         self._delivery_routes.append(route)
@@ -78,3 +85,9 @@ class ApplicationData:
                             f"Start Location: {package.start_location}\n"
                             f"End Location: {package.end_location}" for package in unassigned_packages]
         return "\n".join(formatted_packages)
+    
+    def update_current_day(self, add_days):
+        if add_days < 0:
+            raise ValueError("Cannot set a date in the past, you can only add days.")
+        self._current_day += timedelta(days = add_days)
+        return f"Current day is now {format_date(self.current_day)}."
