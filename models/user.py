@@ -1,16 +1,14 @@
 from models.constants.job_title import JobTitle
 
 
-class Employee:
-    def __init__(self, username: str, password: str, job_title: JobTitle, is_admin: bool = False):
+class User:
+    def __init__(self, username: str, password: str, job_title: JobTitle):
         self.username = username
         self.password = password
-        self._is_admin = is_admin
         self._job_title = job_title
-
-    @property
-    def is_admin(self):
-        return self._is_admin
+        self._is_employee = None
+        self._is_supervisor = None
+        self._is_manager = None
 
     @property
     def username(self):
@@ -40,5 +38,14 @@ class Employee:
     def job_title(self):
         return self._job_title
     
-    def check_package(self, package_id):
-        pass
+    @property
+    def is_employee(self):
+        return self._is_employee == JobTitle.EMPLOYEE
+    
+    @property
+    def is_supervisor(self):
+        return self._is_supervisor == JobTitle.SUPERVISOR
+    
+    @property
+    def is_manager(self):
+        return self._is_manager == JobTitle.MANAGER

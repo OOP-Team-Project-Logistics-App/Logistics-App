@@ -20,9 +20,9 @@ class CommandFactory:
     def create(self, input_line):
         cmd, *params = input_line.split()
 
-        if cmd.lower() == 'packagestatus':
+        if cmd.lower() == "packagestatus":
             return PackageStatusCommand(params, self._app_data)
-        if cmd.lower() == 'updateday':
+        if cmd.lower() == "updateday":
             return UpdateCurrentDayCommand(params, self._app_data)
         if cmd.lower() == "createdeliveryroute":
             return CreateDeliveryRouteCommand(params, self._app_data)
@@ -32,8 +32,6 @@ class CommandFactory:
             return SearchRouteCommand(params, self._app_data)
         if cmd.lower() == "viewroute":
             return ViewRouteCommand(params, self._app_data)
-        if cmd.lower() == "createtrucks":
-            return InitializeTrucksCommand(self._app_data)
         if cmd.lower() == "assigntrucktoroute":
             return AssignTruckToRouteCommand(params, self._app_data)
         if cmd.lower() == "assignpackagetoroute":

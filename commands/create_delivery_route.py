@@ -19,8 +19,6 @@ class CreateDeliveryRouteCommand(BaseCommand):
 
         locations = self.params[1:]
         new_route = Route(set_off_time, locations)
-        # arrive = new_route.calculate_arrival_time()
-        # print(arrive)
         self.app_data.add_route(new_route)
 
         return str(new_route)
