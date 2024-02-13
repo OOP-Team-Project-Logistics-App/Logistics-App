@@ -9,7 +9,7 @@ class PackageStatusCommand(BaseCommand):
 
     def execute(self):
         package_id = self.params[0]
-        current_time = datetime.now()
+        current_time = self.app_data.current_day
 
         package = self.app_data.get_package_by_id(package_id)
         package.update_package_status(current_time)

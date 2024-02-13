@@ -14,6 +14,7 @@ class Route:
         self._packages = []
         self._assigned_truck = assigned_truck
         self._arrival_time = None
+        #self._arrival_time = set_off_time + timedelta(hours=self.total_distance() / 87)
 
     @property
     def arrival_time(self):
