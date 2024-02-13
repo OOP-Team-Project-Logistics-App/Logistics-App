@@ -15,7 +15,7 @@ class ViewInProgressRoutesCommand(BaseCommand):
         for route in routes:
             truck = route.assigned_truck
             packages = route.packages
-            if route.set_off_time <= current_time < route.calculate_arrival_time():
+            if route.set_off_time <= current_time < route.arrival_time:
                 output_string += f"\n{route.route_info()}"
                 output_string += f"\nTruck {str(truck)}"
                 output_string += "\nPackages:"

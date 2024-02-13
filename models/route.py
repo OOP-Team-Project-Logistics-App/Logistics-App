@@ -7,14 +7,13 @@ from models.truck import Truck
 class Route:
     id_count = 0
 
-    def __init__(self, set_off_time: datetime, locations: list[str], assigned_truck: Truck = None):
+    def __init__(self, set_off_time: datetime, locations: dict, assigned_truck: Truck = None):
         self._set_off_time = set_off_time
         self._id = self.id_counter()
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
-        self._arrival_time = None
-        #self._arrival_time = set_off_time + timedelta(hours=self.total_distance() / 87)
+        self._arrival_time = set_off_time + timedelta(hours=self.total_distance() / 87)
 
     @property
     def arrival_time(self):
@@ -43,15 +42,12 @@ class Route:
     
     @property
     def locations(self):
-        return tuple(self._locations)
+        return self._locations
     
     @property 
     def packages(self):
         return tuple(self._packages)
-    
-    def add_location(self, location):
-        self._locations.append(location)
-        
+
     def add_package(self, package):
         self._packages.append(package)
 
@@ -61,12 +57,12 @@ class Route:
     def total_distance(self) -> int:
         total = 0
         for i in range(len(self.locations) - 1):
-            total += Distance.find_distance(self.locations[i], self.locations[i + 1])
+            total += Distance.find_distance(tuple(self.locations)[i], tuple(self.locations)[i + 1])
         return total
-    
-    def calculate_arrival_time(self):
-        self._arrival_time = self.set_off_time + timedelta(hours=self.total_distance()/87)
-        return self._arrival_time
+
+    # def calculate_arrival_time(self):
+    #     self._arrival_time = self.set_off_time + timedelta(hours=self.total_distance()/87)
+    #     return self._arrival_time
     
     def total_weight(self):
         return sum(package.weight for package in self.packages)
@@ -79,13 +75,10 @@ class Route:
             Returns:
                 str: A string representation of the route's journey schedule.
         """
-        departure_time = self._set_off_time
         output_string = f"Route {self._id}: "
-        for i in range(len(self._locations) - 1):
-            arrival_time = departure_time + calculate_travel_time(self._locations[i], self._locations[i + 1])
-            output_string += f"{self._locations[i]} ({format_date(departure_time)}) -> "
-            departure_time = arrival_time
-        return output_string + f"{self._locations[-1]} ({format_date(departure_time)})"
+        for key, value in self._locations.items():
+            output_string += f"{key} ({format_date(value)}) -> "
+        return output_string
 
     def __str__(self):
-        return f"Route {self._id}: {' -> '.join(self._locations)} created."
+        return f"Route {self._id}: {' -> '.join(self._locations.keys())} created."

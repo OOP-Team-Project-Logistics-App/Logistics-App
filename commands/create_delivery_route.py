@@ -1,5 +1,6 @@
 from commands.base.base_command import BaseCommand
 from core.application_data import ApplicationData
+from models.constants.date_and_time_data import calculate_travel_time
 from models.route import Route
 from datetime import datetime, timedelta
 
@@ -16,9 +17,17 @@ class CreateDeliveryRouteCommand(BaseCommand):
             raise ValueError("Set off time cannot be in the past")
         if date_today + timedelta(days = 30) < set_off_time:
             raise ValueError("Set off time cannot be more than 30 days in the future")
-
+        #Assigning each location to its respective arrival time
+        dict_locations = {}
         locations = self.params[1:]
-        new_route = Route(set_off_time, locations)
+
+        start_location = locations[0]
+        arrival_time = set_off_time
+        for location in locations:
+            arrival_time += calculate_travel_time(start_location, location)
+            dict_locations[location] = arrival_time
+
+        new_route = Route(set_off_time, dict_locations)
         self.app_data.add_route(new_route)
 
         return str(new_route)

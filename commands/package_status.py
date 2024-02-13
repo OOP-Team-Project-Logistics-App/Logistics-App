@@ -14,4 +14,4 @@ class PackageStatusCommand(BaseCommand):
         package = self.app_data.get_package_by_id(package_id)
         package.update_package_status(current_time)
 
-        return f"Package {package_id} status updated to {package.status}."
+        return f"Package {package_id} status is '{package.status.value}'."
