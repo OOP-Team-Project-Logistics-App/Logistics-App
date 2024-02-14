@@ -17,7 +17,7 @@ class CreateDeliveryRouteCommand(BaseCommand):
             raise ValueError("Set off time cannot be in the past")
         if date_today + timedelta(days = 30) < set_off_time:
             raise ValueError("Set off time cannot be more than 30 days in the future")
-        #Assigning each location to its respective arrival time
+
         dict_locations = {}
         locations = self.params[1:]
 
