@@ -33,8 +33,7 @@ class ApplicationData:
         self._delivery_routes.append(route)
 
     def add_package(self, package: Package):
-        if package not in self._delivery_packages:
-            self._delivery_packages.append(package)
+        self._delivery_packages.append(package)
 
     def initialize_trucks(self):
         self._trucks.extend([Truck(id, "Scania", 42000, 8000) for id in range(1001, 1011)])
@@ -94,7 +93,7 @@ class ApplicationData:
         return f"Current day is now {format_date(self.current_day)}."
     
     def update_truck_statuses(self):
-        current_time = datetime.now()
+        current_time = self.current_day       #Double check this
         for truck in self._trucks:
             if truck.is_route_complete(current_time):
                 truck.complete_route()
