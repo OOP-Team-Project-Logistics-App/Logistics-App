@@ -9,7 +9,7 @@ class Truck:
         self._remaining_capacity = capacity
         self._max_range = max_range
         self._status = TruckStatus.AVAILABLE
-        self._assigned_time_period = None
+        self._assigned_time_periods = []
 
     @property
     def id(self):
@@ -36,12 +36,12 @@ class Truck:
         return self._status
 
     @property
-    def assigned_time_period(self):
-        return self._assigned_time_period
+    def assigned_time_periods(self):
+        return tuple(self._assigned_time_periods)
 
     def assign(self, time_period):
         self._status = TruckStatus.UNAVAILABLE
-        self._assigned_time_period = time_period
+        self._assigned_time_periods.append(time_period)
     
     def add_package_weight(self, package):
         if self.remaining_capacity >= package.weight:

@@ -43,11 +43,24 @@ class ApplicationData:
     def find_suitable_truck(self, route: Route):
         for truck in self._trucks:
             if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
-                if truck.assigned_time_period is None or truck.assigned_time_period[1] <= route.set_off_time or \
-                    route.arrival_time <= truck.assigned_time_period[0]:
+                time_conflict = False
+                for time_period in truck._assigned_time_periods:
+                    if not (route.set_off_time >= time_period[1] or route.arrival_time <= time_period[0]):
+                        time_conflict = True
+                        break
+                if not time_conflict:
                     route.assign_truck(truck)
                     return truck
         raise ValueError("There is no suitable truck for this route.")
+
+    # def find_suitable_truck(self, route: Route):
+    #     for truck in self._trucks:
+    #         if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
+    #             if truck.assigned_time_period is None or truck.assigned_time_period[1] <= route.set_off_time or \
+    #                 route.arrival_time <= truck.assigned_time_period[0]:
+    #                 route.assign_truck(truck)
+    #                 return truck
+    #     raise ValueError("There is no suitable truck for this route.")
 
     def get_route_by_id(self, route_id: int):
         for route in self._delivery_routes:

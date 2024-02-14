@@ -2,7 +2,6 @@ from datetime import timedelta
 from commands.validators.validation_helpers import try_parse_float
 from core.application_data import ApplicationData
 from models.constants.truck_status import TruckStatus
-from models.truck import Truck
 
 
 class UpdateCurrentDayCommand:

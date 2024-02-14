@@ -16,5 +16,5 @@ class AssignTruckToRouteCommand(BaseCommand):
         #If a suitable truck is found, assign a time period during which the truck is busy
         if truck:
             truck.assign(time_period = (route.set_off_time, route.arrival_time))
-        #
+            
         return f"Truck with id {truck.id} was assigned to route id {route.id}."
