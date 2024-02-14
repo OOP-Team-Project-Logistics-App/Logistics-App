@@ -86,7 +86,7 @@ class Package:
                     arrival_time = time
 
             self._status = (PackageStatus.PENDING if current_time < departure_time else
-                            PackageStatus.EN_ROUTE if current_time < arrival_time else
+                            PackageStatus.EN_ROUTE if departure_time <= current_time < arrival_time else
                             PackageStatus.DELIVERED)
 
     def package_info(self):

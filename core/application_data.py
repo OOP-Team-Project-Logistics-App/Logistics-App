@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from models.constants.date_and_time_data import format_date
+from models.constants.truck_status import TruckStatus
 from models.route import Route
 from models.package import Package
 from models.truck import Truck
@@ -44,7 +45,7 @@ class ApplicationData:
         for truck in self._trucks:
             if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
                 if truck.assigned_time_period is None or truck.assigned_time_period[1] <= route.set_off_time or \
-                        route.arrival_time <= truck.assigned_time_period[0]:
+                    route.arrival_time <= truck.assigned_time_period[0]:
                     route.assign_truck(truck)
                     return truck
         raise ValueError("There is no suitable truck for this route.")
@@ -70,7 +71,7 @@ class ApplicationData:
     def search_route(self, start_location: str, end_location: str):
         matching_routes = [route for route in self._delivery_routes 
                             if start_location in route.locations and end_location in route.locations
-                            and tuple(route.locations).index(start_location) < tuple(route.locations).index(end_location)]        # NEEDS CHANGING, WE HAVE A DICTIONARY NOW
+                            and tuple(route.locations).index(start_location) < tuple(route.locations).index(end_location)]
         return matching_routes
 
     def assign_package_to_route(self, package, route, start_location, end_location, weight, contact_info):
@@ -91,3 +92,20 @@ class ApplicationData:
             raise ValueError("Cannot set a date in the past, you can only add days.")
         self._current_day += timedelta(days = add_days)
         return f"Current day is now {format_date(self.current_day)}."
+    
+    def update_truck_statuses(self):
+        current_time = datetime.now()
+        for truck in self._trucks:
+            if truck.is_route_complete(current_time):
+                truck.complete_route()
+    
+    def show_available_trucks(self):
+        truck_names = ["Scania", "Man", "Actros"]
+        result = []
+        for truck_name in truck_names:
+            total = sum(1 for truck in self._trucks if truck.name == truck_name)
+            available = sum(1 for truck in self._trucks if truck.name == truck_name and truck.status == TruckStatus.NOT_AVAILABLE)
+            unavailable = total - available
+            result.append(f"{truck_name}: Total: {total}, AVAILABLE: {available}, UNAVAILABLE: {unavailable}")
+
+        return "\n".join(result)

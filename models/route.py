@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from models.constants.date_and_time_data import calculate_travel_time, format_date
+from models.constants.date_and_time_data import format_date
 from models.constants.distance_data import Distance
 from models.truck import Truck
 
@@ -8,24 +8,12 @@ class Route:
     id_count = 0
 
     def __init__(self, set_off_time: datetime, locations: dict, assigned_truck: Truck = None):
-        self._set_off_time = set_off_time
         self._id = self.id_counter()
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
+        self.set_off_time = set_off_time
         self._arrival_time = set_off_time + timedelta(hours = self.total_distance() / 87)
-
-    @property
-    def arrival_time(self):
-        return self._arrival_time
-
-    @property
-    def set_off_time(self):
-        return self._set_off_time
-    
-    @set_off_time.setter
-    def set_off_time(self, value: datetime):
-        self._set_off_time = value
 
     @classmethod
     def id_counter(cls):
@@ -47,6 +35,18 @@ class Route:
     @property 
     def packages(self):
         return tuple(self._packages)
+    
+    @property
+    def set_off_time(self):
+        return self._set_off_time
+    
+    @set_off_time.setter
+    def set_off_time(self, value: datetime):
+        self._set_off_time = value
+    
+    @property
+    def arrival_time(self):
+        return self._arrival_time
 
     def add_package(self, package):
         self._packages.append(package)
@@ -66,6 +66,15 @@ class Route:
     
     def total_weight(self):
         return sum(package.weight for package in self.packages)
+    
+    def is_complete(self, current_time):
+        _, end_time = list(self._locations.items())[-1]
+        if current_time >= end_time:
+            if self._assigned_truck:
+                self._assigned_truck.complete_route()
+                self._assigned_truck = None
+            return True
+        return False
     
     def route_info(self) -> str:
         """

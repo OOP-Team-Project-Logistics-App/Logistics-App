@@ -1,8 +1,8 @@
 from commands.create_delivery_route import CreateDeliveryRouteCommand
 from commands.create_delivery_package import CreateDeliveryPackageCommand
 from commands.get_package_info import GetPackageInformation
-from commands.initialize_trucks import InitializeTrucksCommand
 from commands.search_route import SearchRouteCommand
+from commands.show_available_trucks import ShowAvailableTrucks
 from commands.view_all_routes import ViewInProgressRoutesCommand
 from commands.view_route import ViewRouteCommand
 from commands.assign_truck_to_route import AssignTruckToRouteCommand
@@ -42,5 +42,7 @@ class CommandFactory:
             return ViewUnassignedPackages(params, self._app_data)
         if cmd.lower() == "viewallroutes":
             return ViewInProgressRoutesCommand(params, self._app_data)
+        if cmd.lower() == "showavailabletrucks":
+            return ShowAvailableTrucks(self._app_data)
 
         raise InvalidCommand(cmd)

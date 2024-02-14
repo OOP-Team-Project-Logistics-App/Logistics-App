@@ -13,8 +13,7 @@ class AssignTruckToRouteCommand(BaseCommand):
         truck = self.app_data.find_suitable_truck(route)
         if truck:
             truck.assign(time_period = (route.set_off_time, route.arrival_time))
-        
-        # truck = self.app_data.get_truck_by_id(truck.id)
-        # print(truck.status)
+
+        self.app_data.update_truck_statuses()
 
         return f"Truck with id {truck.id} was assigned to route id {route.id}."
