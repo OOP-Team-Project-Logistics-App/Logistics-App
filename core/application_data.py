@@ -33,8 +33,7 @@ class ApplicationData:
         self._delivery_routes.append(route)
 
     def add_package(self, package: Package):
-        if package not in self._delivery_packages:
-            self._delivery_packages.append(package)
+        self._delivery_packages.append(package)
 
     def initialize_trucks(self):
         self._trucks.extend([Truck(id, "Scania", 42000, 8000) for id in range(1001, 1011)])
