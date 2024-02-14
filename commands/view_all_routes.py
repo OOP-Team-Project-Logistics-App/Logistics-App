@@ -9,7 +9,6 @@ class ViewInProgressRoutesCommand(BaseCommand):
     def execute(self):
         routes = self.app_data._delivery_routes
         current_time = self.app_data.current_day
-        print(f"Current time: {current_time}")
 
         output_string = "Information about in-progress routes:"
         for route in routes:

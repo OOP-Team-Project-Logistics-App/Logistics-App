@@ -10,4 +10,4 @@ class GetPackageInformation(BaseCommand):
         package_id = self.params[0]
         package = self.app_data.get_package_by_id(package_id)
 
-        return package.info()
+        return package.package_info()

@@ -13,7 +13,7 @@ class Route:
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
-        self._arrival_time = set_off_time + timedelta(hours=self.total_distance() / 87)
+        self._arrival_time = set_off_time + timedelta(hours = self.total_distance() / 87)
 
     @property
     def arrival_time(self):
@@ -75,7 +75,8 @@ class Route:
             Returns:
                 str: A string representation of the route's journey schedule.
         """
-        output_string = f"Route {self._id}: {' -> '.join(f"{key} {format_date(value)}" for key, value in self._locations.items())}"
+        locations_string = ' -> '.join(f"{key} {format_date(value)}" for key, value in self._locations.items())
+        output_string = f"Route {self._id}: {locations_string}"
         return output_string
 
     def __str__(self):
