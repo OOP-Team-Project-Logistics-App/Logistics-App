@@ -1,6 +1,8 @@
 from datetime import timedelta
 from commands.validators.validation_helpers import try_parse_float
 from core.application_data import ApplicationData
+from models.constants.truck_status import TruckStatus
+from models.truck import Truck
 
 
 class UpdateCurrentDayCommand:
@@ -9,4 +11,12 @@ class UpdateCurrentDayCommand:
         self.app_data = app_data
 
     def execute(self):
+        self.update_truck_status()
         return self.app_data.update_current_day(self.add_days)
+    
+    def update_truck_status(self):
+        for route in self.app_data._delivery_routes:
+            if route.check_if_route_completed(self.app_data.current_day + timedelta(days = self.add_days)):
+                truck = route._assigned_truck
+                if truck:
+                    truck._status = TruckStatus.AVAILABLE

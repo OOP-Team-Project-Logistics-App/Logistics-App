@@ -67,14 +67,9 @@ class Route:
     def total_weight(self):
         return sum(package.weight for package in self.packages)
     
-    def is_complete(self, current_time):
-        _, end_time = list(self._locations.items())[-1]
-        if current_time >= end_time:
-            if self._assigned_truck:
-                self._assigned_truck.complete_route()
-                self._assigned_truck = None
-            return True
-        return False
+    def check_if_route_completed(self, current_day):
+        end_location = list(self._locations.keys())[-1]
+        return current_day > self._locations[end_location]
     
     def route_info(self) -> str:
         """

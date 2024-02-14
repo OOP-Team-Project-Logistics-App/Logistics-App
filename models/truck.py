@@ -40,24 +40,13 @@ class Truck:
         return self._assigned_time_period
 
     def assign(self, time_period):
-        self._status = TruckStatus.NOT_AVAILABLE
+        self._status = TruckStatus.UNAVAILABLE
         self._assigned_time_period = time_period
     
     def add_package_weight(self, package):
         if self.remaining_capacity >= package.weight:
             self._remaining_capacity -= package.weight
         raise ValueError("This package is too heavy for the truck.")
-    
-    def complete_route(self):
-        self._status = TruckStatus.AVAILABLE
-        self._assigned_time_period = None
-    
-    def is_route_complete(self, current_time):
-        if self._status == TruckStatus.NOT_AVAILABLE and current_time >= self._assigned_time_period[1]:
-            self.complete_route()
-            self._route = None
-            return True
-        return False
     
     def __str__(self):
         return f"ID: {self.id}, Model: {self.name}, Capacity: {self.capacity}kg, Max range: {self.max_range}km"

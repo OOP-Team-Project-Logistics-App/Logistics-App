@@ -93,19 +93,15 @@ class ApplicationData:
         self._current_day += timedelta(days = add_days)
         return f"Current day is now {format_date(self.current_day)}."
     
-    def update_truck_statuses(self):
-        current_time = datetime.now()
-        for truck in self._trucks:
-            if truck.is_route_complete(current_time):
-                truck.complete_route()
-    
     def show_available_trucks(self):
         truck_names = ["Scania", "Man", "Actros"]
         result = []
         for truck_name in truck_names:
-            total = sum(1 for truck in self._trucks if truck.name == truck_name)
-            available = sum(1 for truck in self._trucks if truck.name == truck_name and truck.status == TruckStatus.NOT_AVAILABLE)
-            unavailable = total - available
-            result.append(f"{truck_name}: Total: {total}, AVAILABLE: {available}, UNAVAILABLE: {unavailable}")
+            total_trucks = sum(1 for truck in self._trucks if truck.name == truck_name)
+            available_trucks = sum(1 for truck in self._trucks if truck.name == truck_name and truck.status == TruckStatus.AVAILABLE)
+            unavailable_trucks = total_trucks - available_trucks
+            result.append(f"-------\n"
+                        f"{truck_name}:\n"
+                        f"Available: {available_trucks} trucks, Unavailable: {unavailable_trucks} trucks")
 
         return "\n".join(result)

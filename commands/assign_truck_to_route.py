@@ -14,6 +14,4 @@ class AssignTruckToRouteCommand(BaseCommand):
         if truck:
             truck.assign(time_period = (route.set_off_time, route.arrival_time))
 
-        self.app_data.update_truck_statuses()
-
         return f"Truck with id {truck.id} was assigned to route id {route.id}."
