@@ -29,5 +29,5 @@ class CreateDeliveryRouteCommand(BaseCommand):
             start_location = location
         new_route = Route(set_off_time, dict_locations)
         self.app_data.add_route(new_route)
-        
+
         return str(new_route)
