@@ -26,7 +26,7 @@ class UpdateCurrentDayCommand:
 
     def remove_delivered_packages(self):
         for route in self.app_data._delivery_routes:
-            for package in list(route.packages):
+            for package in list(route.packages): #Creates a copy of the list with packages assigned to a certain route
                 package.update_package_status(self.app_data.current_day + timedelta(days = self.add_days))
                 if package.status == PackageStatus.DELIVERED:
                     route.remove_package(package)
