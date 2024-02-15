@@ -18,7 +18,7 @@ class AssignPackageToRouteCommand(BaseCommand):
         if assigned_truck is None:
             raise ValueError(f"Route {route_id} has no assigned truck")
         # Check if the package weight doesn't exceed the truck's capacity minus the assigned packages to that route
-        if package.weight > assigned_truck.capacity - route.total_weight():
+        if package.weight > assigned_truck.remaining_capacity:
             raise ValueError("Package weight exceeds assigned truck's remaining capacity.")
 
         for location in route_locations:
@@ -27,6 +27,7 @@ class AssignPackageToRouteCommand(BaseCommand):
                     if location == package_end_location:
                         route.add_package(package)
                         package.package_assigned_route = route
+                        assigned_truck.add_package_weight(package)
                         return f"Package with id {package_id} was assigned to route {route_id}."
 
         raise ValueError(
