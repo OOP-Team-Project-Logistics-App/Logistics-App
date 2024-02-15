@@ -35,7 +35,6 @@ class Truck:
     def status(self):
         return self._status
 
-    #NOT USED, CHECK IF NECESSARY
     @property
     def assigned_time_periods(self):
         return tuple(self._assigned_time_periods)
@@ -43,12 +42,16 @@ class Truck:
     def assign(self, time_period):
         self._status = TruckStatus.UNAVAILABLE
         self._assigned_time_periods.append(time_period)
+        self._remaining_capacity = self._capacity
 
-    # NOT USED, CHECK IF NECESSARY
     def add_package_weight(self, package):
-        if self.remaining_capacity >= package.weight:
+        if self._remaining_capacity >= package.weight:
             self._remaining_capacity -= package.weight
-        raise ValueError("This package is too heavy for the truck.")
+        else:
+            raise ValueError("This package is too heavy for the truck.")
+        
+    def remove_package_weight(self, package):
+        self._remaining_capacity += package.weight
     
     def __str__(self):
         return f"ID: {self.id}, Model: {self.name}, Capacity: {self.capacity}kg, Max range: {self.max_range}km"

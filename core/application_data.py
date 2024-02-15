@@ -1,3 +1,5 @@
+import os
+import pickle
 from datetime import datetime, timedelta
 from models.constants.date_and_time_data import format_date
 from models.constants.truck_status import TruckStatus
@@ -13,7 +15,6 @@ class ApplicationData:
         self._trucks: list[Truck] = []
         self._current_day = datetime.now()
 
-    #NOT USED, CHECK IF NECESSARY
     @property
     def delivery_routes(self):
         return tuple(self._delivery_routes)
@@ -29,6 +30,27 @@ class ApplicationData:
     @property
     def current_day(self):
         return self._current_day
+    
+    def save_data(self):
+        data = {"Routes": self._delivery_routes,
+                "Packages": self._delivery_packages,
+                "Trucks": self._trucks}
+ 
+        file_path = "data/app_data.pickle"
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.mkdir(os.path.dirname(file_path))
+ 
+        with open(file_path, "wb") as file:
+            pickle.dump(data, file)
+ 
+    def load_data(self):
+        file_path = "data/app_data.pickle"
+        if os.path.isfile(file_path):
+            with open(file_path, "rb") as file:
+                data = pickle.load(file)
+                self._delivery_routes = data["Routes"]
+                self._delivery_packages = data["Packages"]
+                self._trucks = data["Trucks"]
 
     def add_route(self, route: Route):
         self._delivery_routes.append(route)
@@ -69,26 +91,12 @@ class ApplicationData:
             if package.id == int(package_id):
                 return package
         raise ValueError("Package with this id was not found.")
-
-    #NOT USED, CHECK IF NECESSARY
-    def get_truck_by_id(self, truck_id):
-        for truck in self._trucks:
-            if truck.id == truck_id:
-                return truck
-        raise ValueError("Truck with this id was not found.")
     
     def search_route(self, start_location: str, end_location: str):
         matching_routes = [route for route in self._delivery_routes 
                             if start_location in route.locations and end_location in route.locations
                             and tuple(route.locations).index(start_location) < tuple(route.locations).index(end_location)]
         return matching_routes
-
-    #NOT USED, CHECK IF NECESSARY
-    def assign_package_to_route(self, package, route, start_location, end_location, weight, contact_info):
-        package = Package(start_location, end_location, weight, contact_info)
-        if package._start_location in route.locations and package._end_location in route.locations:
-            route.add_package(package)
-        raise ValueError("Package's start and end location do not fit the route.")
     
     def view_unassigned_packages(self):
         unassigned_packages = [package for package in self.delivery_packages if package._package_assigned_route is None]

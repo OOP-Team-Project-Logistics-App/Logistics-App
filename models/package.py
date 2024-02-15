@@ -1,4 +1,3 @@
-from models.constants.date_and_time_data import calculate_travel_time
 from models.constants.distance_data import Distance
 from models.constants.package_status import PackageStatus
 from models.route import Route

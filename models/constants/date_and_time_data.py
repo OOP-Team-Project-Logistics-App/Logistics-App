@@ -12,6 +12,12 @@ def format_date(date):
     """
     Formats a datetime object into a string representation with a specific format.
     It formats the date with suffixes(st, nd, rd, th) and returns the formatted date string.
+
+        Parameters:
+                date (datetime): The datetime object to be formatted.
+                
+        Returns:
+                str: The formatted date string.
     """
     suffix_list = ["th", "st", "nd", "rd"] + ["th"] * 6
     day = date.day

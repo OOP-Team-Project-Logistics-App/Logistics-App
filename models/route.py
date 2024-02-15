@@ -51,6 +51,11 @@ class Route:
     def add_package(self, package):
         self._packages.append(package)
 
+    def remove_package(self, package):
+        if package in self._packages:
+            self._packages.remove(package)
+            self._assigned_truck.remove_package_weight(package)
+
     def assign_truck(self, truck: Truck):
         self._assigned_truck = truck
 
@@ -59,10 +64,6 @@ class Route:
         for i in range(len(self.locations) - 1):
             total += Distance.find_distance(tuple(self.locations)[i], tuple(self.locations)[i + 1])
         return total
-
-    # def calculate_arrival_time(self):
-    #     self._arrival_time = self.set_off_time + timedelta(hours=self.total_distance()/87)
-    #     return self._arrival_time
     
     def total_weight(self):
         return sum(package.weight for package in self.packages)
@@ -73,7 +74,7 @@ class Route:
     
     def route_info(self) -> str:
         """
-        The method calculates and returns a string with the time when a truck departures from the start location \
+        Calculates and returns a string with the time when a truck departures from the start location \
         and arrival time of the end location.
 
             Returns:
