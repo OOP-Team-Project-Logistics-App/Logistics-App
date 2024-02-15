@@ -74,6 +74,10 @@ class Package:
     def status(self):
         return self._status
 
+    #If there is no route assigned to the package, its status is "Not assigned", otherwise iterate through the route's
+    #locations and their respective arrival times. If there's a match with the package's start location the route's location,
+    #that location's arrival becomes the package's departure time. Do the same for the package's end location. The status
+    #of the package changes depending on its progress through the route depending on the current day.
     def update_package_status(self, current_time):
         if self._package_assigned_route is None:
             self._status = PackageStatus.NOT_ASSIGNED

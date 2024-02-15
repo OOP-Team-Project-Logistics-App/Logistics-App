@@ -35,6 +35,7 @@ class Truck:
     def status(self):
         return self._status
 
+    #NOT USED, CHECK IF NECESSARY
     @property
     def assigned_time_periods(self):
         return tuple(self._assigned_time_periods)
@@ -42,7 +43,8 @@ class Truck:
     def assign(self, time_period):
         self._status = TruckStatus.UNAVAILABLE
         self._assigned_time_periods.append(time_period)
-    
+
+    # NOT USED, CHECK IF NECESSARY
     def add_package_weight(self, package):
         if self.remaining_capacity >= package.weight:
             self._remaining_capacity -= package.weight

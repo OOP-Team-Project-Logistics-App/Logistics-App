@@ -10,14 +10,8 @@ def calculate_travel_time(departure_city, arrival_city):
 
 def format_date(date):
     """
-    This function formats a datetime object into a string representation with a specific format. \
-    It formats the date with suffixes(for example st, nd, rd, th).
-
-        Parameters:
-                date (datetime): The datetime object to be formatted.
-
-        Returns:
-                str: The formatted date string.
+    Formats a datetime object into a string representation with a specific format.
+    It formats the date with suffixes(st, nd, rd, th) and returns the formatted date string.
     """
     suffix_list = ["th", "st", "nd", "rd"] + ["th"] * 6
     day = date.day

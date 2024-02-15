@@ -13,6 +13,7 @@ class ApplicationData:
         self._trucks: list[Truck] = []
         self._current_day = datetime.now()
 
+    #NOT USED, CHECK IF NECESSARY
     @property
     def delivery_routes(self):
         return tuple(self._delivery_routes)
@@ -40,6 +41,10 @@ class ApplicationData:
         self._trucks.extend([Truck(id, "Man", 37000, 10000) for id in range(1011, 1026)])
         self._trucks.extend([Truck(id, "Actros", 26000, 13000) for id in range(1026, 1041)])
 
+    #Iterate through each truck, if both the range and the capacity of the truck satisfy the demands for the completion
+    #of the new route, check if the truck has any assigned routes. If any routes are assigned, check if the set off time
+    #of the new route overlaps with the arrival time of each assigned route, and the arrival time of the new route
+    #overlaps with the set off time of each assigned route. If conflict is found, do the same checks for the next truck.
     def find_suitable_truck(self, route: Route):
         for truck in self._trucks:
             if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
@@ -53,15 +58,6 @@ class ApplicationData:
                     return truck
         raise ValueError("There is no suitable truck for this route.")
 
-    # def find_suitable_truck(self, route: Route):
-    #     for truck in self._trucks:
-    #         if truck.max_range >= route.total_distance() and truck.capacity >= route.total_weight():
-    #             if truck.assigned_time_period is None or truck.assigned_time_period[1] <= route.set_off_time or \
-    #                 route.arrival_time <= truck.assigned_time_period[0]:
-    #                 route.assign_truck(truck)
-    #                 return truck
-    #     raise ValueError("There is no suitable truck for this route.")
-
     def get_route_by_id(self, route_id: int):
         for route in self._delivery_routes:
             if route.id == int(route_id):
@@ -73,7 +69,8 @@ class ApplicationData:
             if package.id == int(package_id):
                 return package
         raise ValueError("Package with this id was not found.")
-    
+
+    #NOT USED, CHECK IF NECESSARY
     def get_truck_by_id(self, truck_id):
         for truck in self._trucks:
             if truck.id == truck_id:
@@ -86,6 +83,7 @@ class ApplicationData:
                             and tuple(route.locations).index(start_location) < tuple(route.locations).index(end_location)]
         return matching_routes
 
+    #NOT USED, CHECK IF NECESSARY
     def assign_package_to_route(self, package, route, start_location, end_location, weight, contact_info):
         package = Package(start_location, end_location, weight, contact_info)
         if package._start_location in route.locations and package._end_location in route.locations:
