@@ -13,7 +13,6 @@ class ApplicationData:
         self._trucks: list[Truck] = []
         self._current_day = datetime.now()
 
-    #NOT USED, CHECK IF NECESSARY
     @property
     def delivery_routes(self):
         return tuple(self._delivery_routes)
