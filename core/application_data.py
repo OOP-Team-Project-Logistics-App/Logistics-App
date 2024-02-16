@@ -31,7 +31,7 @@ class ApplicationData:
     def current_day(self):
         return self._current_day
     
-    def save_data(self):
+    def save_system_state(self):
         data = {"Routes": self._delivery_routes,
                 "Packages": self._delivery_packages,
                 "Trucks": self._trucks}
@@ -43,7 +43,7 @@ class ApplicationData:
         with open(file_path, "wb") as file:
             pickle.dump(data, file)
  
-    def load_data(self):
+    def load_system_state(self):
         file_path = "data/app_data.pickle"
         if os.path.isfile(file_path):
             with open(file_path, "rb") as file:

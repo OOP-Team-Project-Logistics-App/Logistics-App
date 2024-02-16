@@ -36,20 +36,13 @@ class CommandFactory_Should(unittest.TestCase):
 
     def test_command_createdeliveryroute_when_SetOffTimeInPast(self):
         time_in_past = (datetime.now() - timedelta(days=1)).strftime("%m/%d/%H")
-
         command = self.command_factory.create(f"createdeliveryroute {time_in_past} Brisbane Sydney Melbourne")
-
-
         with self.assertRaises(ValueError):
             command.execute()
 
     def test_command_createdeliveryroute_when_SetOffTimeTooFarInFuture(self):
         time_in_future = (datetime.now() + timedelta(days=31)).strftime("%m/%d/%H")
-        # print("Testing with time in the future:", time_in_future)
-
         command = self.command_factory.create(f"createdeliveryroute {time_in_future} Brisbane Sydney Melbourne")
-        # print("Command created successfully:", command)
-
         with self.assertRaises(ValueError):
             command.execute()
 
