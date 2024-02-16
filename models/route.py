@@ -12,7 +12,7 @@ class Route:
         self._locations = locations
         self._packages = []
         self._assigned_truck = assigned_truck
-        self.set_off_time = set_off_time
+        self._set_off_time = set_off_time
         self._arrival_time = set_off_time + timedelta(hours = self.total_distance() / 87)
 
     @classmethod
@@ -39,10 +39,6 @@ class Route:
     @property
     def set_off_time(self):
         return self._set_off_time
-    
-    @set_off_time.setter
-    def set_off_time(self, value: datetime):
-        self._set_off_time = value
     
     @property
     def arrival_time(self):

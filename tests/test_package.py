@@ -40,6 +40,10 @@ class Package_Should(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.package.end_location = self.start_location
 
+    def test_initializator_whenWeightIsNegative(self):
+        with self.assertRaises(ValueError):
+            self.package = Package(self.start_location, self.end_location, -500, self.contact_info)
+
     def test_contact_info_whenContactInfoIsInvalid(self):
         with self.assertRaises(ValueError):
             self.package.contact_info = "testemail"

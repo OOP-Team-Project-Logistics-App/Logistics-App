@@ -11,7 +11,7 @@ class Package:
         self._id = self.id_counter()
         self.start_location = start_location
         self.end_location = end_location
-        self._weight = weight
+        self.weight = weight
         self.contact_info = contact_info
         self._package_assigned_route = package_assigned_route
         self._status = PackageStatus.NOT_ASSIGNED
@@ -50,6 +50,13 @@ class Package:
     @property
     def weight(self):
         return self._weight
+    
+    @weight.setter
+    def weight(self, value: int):
+        if value > 0:
+            self._weight = value
+        else:
+            raise ValueError("Weight cannot be negative.")
     
     @property
     def contact_info(self):
@@ -102,7 +109,7 @@ class Package:
                 f"Contact info: {self._contact_info}"
     
     def __str__(self):
-        return f"Package with id {self._id} created. --\n" \
+        return f"Package with id {self._id} created.\n" \
                 f"-- Accepted in city: {self.start_location} --\n" \
                 f"-- Delivery to: {self.end_location} --\n" \
                 f"-- Weight: {self._weight}kg --\n" \
