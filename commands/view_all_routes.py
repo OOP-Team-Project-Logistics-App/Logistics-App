@@ -9,12 +9,9 @@ class ViewInProgressRoutesCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
-        validate_login(self.app_data, requires_login=True)
-
+        validate_login(self.app_data, requires_login = True)
         logged_in_user = self.app_data.logged_in_user
-
         if logged_in_user.job_title == JobTitle.MANAGER:
-
             routes = self.app_data._delivery_routes
             current_time = self.app_data.current_day
 
@@ -34,4 +31,4 @@ class ViewInProgressRoutesCommand(BaseCommand):
             return output_string
 
         else:
-            raise ValueError("Only managers are allowed to view all delivery routes!")
+            raise ValueError("Only managers are allowed to view all delivery routes in progress!")

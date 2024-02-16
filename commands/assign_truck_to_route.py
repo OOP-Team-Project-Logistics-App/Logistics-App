@@ -9,7 +9,7 @@ class AssignTruckToRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
-        validate_login(self.app_data, requires_login=True)
+        validate_login(self.app_data, requires_login = True)
         self.route_id = try_parse_int(self.params[0])
         route = self.app_data.get_route_by_id(self.route_id)
         if route.assigned_truck:

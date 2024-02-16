@@ -11,7 +11,7 @@ class CreateDeliveryRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
-        validate_login(self.app_data, requires_login=True)
+        validate_login(self.app_data, requires_login = True)
         date_today = self.app_data.current_day
         set_off = self.params[0]
         set_off_time = datetime.strptime(f"2024-{set_off}", "%Y-%m/%d/%H")

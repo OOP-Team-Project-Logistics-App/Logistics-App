@@ -8,7 +8,7 @@ class GetPackageInformation(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
-        validate_login(self.app_data, requires_login=True)
+        validate_login(self.app_data, requires_login = True)
         package_id = self.params[0]
         package = self.app_data.get_package_by_id(package_id)
 

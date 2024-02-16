@@ -7,5 +7,5 @@ class ShowAvailableTrucks:
         self._app_data = app_data
 
     def execute(self):
-        validate_login(self._app_data, requires_login=True)
+        validate_login(self._app_data, requires_login = True)
         return self._app_data.show_available_trucks()

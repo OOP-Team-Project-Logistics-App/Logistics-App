@@ -8,9 +8,8 @@ class LogoutCommand:
         self._app_data = app_data
 
     def execute(self):
-        validate_login(self._app_data, requires_login=True)  # Validate login
-
+        validate_login(self._app_data, requires_login = True)
         self._app_data.logout()
 
-        return 'You logged out!'
+        return "User logged out."
 

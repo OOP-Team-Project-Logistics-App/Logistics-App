@@ -10,7 +10,7 @@ class CreateDeliveryPackageCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
-        validate_login(self.app_data, requires_login=True)
+        validate_login(self.app_data, requires_login = True)
         start_location = self.params[0]
         end_location = self.params[1]
         weight = try_parse_int(self.params[2])

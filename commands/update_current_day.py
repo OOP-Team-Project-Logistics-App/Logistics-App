@@ -6,6 +6,7 @@ from models.constants.package_status import PackageStatus
 from models.constants.truck_status import TruckStatus
 
 
+#Mainly used for testing, won't be a part of the user interface
 class UpdateCurrentDayCommand(BaseCommand):
     def __init__(self, params: list, app_data: ApplicationData):
         super().__init__(params, app_data)

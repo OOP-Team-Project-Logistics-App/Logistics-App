@@ -48,4 +48,5 @@ class CommandFactory:
             return LoginCommand(params, self._app_data)
         if cmd.lower() == 'logout':
             return LogoutCommand(self._app_data)
+        
         raise InvalidCommand(cmd)

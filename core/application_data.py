@@ -2,10 +2,10 @@ import os
 import pickle
 from datetime import datetime, timedelta
 from models.constants.date_and_time_data import format_date
-from models.constants.truck_status import TruckStatus
 from models.route import Route
 from models.package import Package
 from models.truck import Truck
+from models.constants.truck_status import TruckStatus
 from models.user import User
 from models.constants.job_title import JobTitle
 
@@ -15,8 +15,8 @@ class ApplicationData:
         self._delivery_routes: list[Route] = []
         self._delivery_packages: list[Package] = []
         self._trucks: list[Truck] = []
+        self._employees: list[User] = []
         self._current_day = datetime.now()
-        self._workers = []
         self._logged_user = None
 
     @property
@@ -32,13 +32,29 @@ class ApplicationData:
         return tuple(self._trucks)
     
     @property
+    def employees(self):
+        return tuple(self._employees)
+    
+    @property
     def current_day(self):
         return self._current_day
+    
+    @property
+    def logged_in_user(self):
+        if self.has_logged_in_user:
+            return self._logged_user
+        else:
+            raise ValueError("There is no logged in user.")
+
+    @property
+    def has_logged_in_user(self):
+        return self._logged_user is not None
     
     def save_system_state(self):
         data = {"Routes": self._delivery_routes,
                 "Packages": self._delivery_packages,
-                "Trucks": self._trucks}
+                "Trucks": self._trucks,
+                "Employees": self._employees}
  
         file_path = "data/app_data.pickle"
         if not os.path.exists(os.path.dirname(file_path)):
@@ -55,6 +71,7 @@ class ApplicationData:
                 self._delivery_routes = data["Routes"]
                 self._delivery_packages = data["Packages"]
                 self._trucks = data["Trucks"]
+                self._employees = data["Employees"]
 
     def add_route(self, route: Route):
         self._delivery_routes.append(route)
@@ -67,39 +84,10 @@ class ApplicationData:
         self._trucks.extend([Truck(id, "Man", 37000, 10000) for id in range(1011, 1026)])
         self._trucks.extend([Truck(id, "Actros", 26000, 13000) for id in range(1026, 1041)])
 
-    def initialize_workers(self):
-        manager = User("Manager", "Mpassword", JobTitle.MANAGER)
-        self._workers.append(manager)
-
-        supervisor = User("Supervisor", "Spassword", JobTitle.SUPERVISOR)
-        self._workers.append(supervisor)
-
-        employee = User("Employee", "Epassword", JobTitle.EMPLOYEE)
-        self._workers.append(employee)
-
-    def find_user_by_username(self, username: str) -> User:
-        filtered = [user for user in self._workers if user.username == username]
-        if filtered == []:
-            raise ValueError(f'There is no user with username {username}!')
-
-        return filtered[0]
-
-    @property
-    def logged_in_user(self):
-        if self.has_logged_in_user:
-            return self._logged_user
-        else:
-            raise ValueError('There is no logged in user.')
-
-    @property
-    def has_logged_in_user(self):
-        return self._logged_user is not None
-
-    def login(self, user: User):
-        self._logged_user = user
-
-    def logout(self):
-        self._logged_user = None
+    def initialize_employees(self):
+        self._employees.extend([User("Employee", "Epassword", JobTitle.EMPLOYEE)])
+        self._employees.extend([User("Supervisor", "Spassword", JobTitle.SUPERVISOR)])
+        self._employees.extend([User("Manager", "Mpassword", JobTitle.MANAGER)])
 
     #Iterate through each truck, if both the range and the capacity of the truck satisfy the demands for the completion
     #of the new route, check if the truck has any assigned routes. If any routes are assigned, check if the set off time
@@ -117,6 +105,12 @@ class ApplicationData:
                     route.assign_truck(truck)
                     return truck
         raise ValueError("There is no suitable truck for this route.")
+    
+    def find_user(self, username: str):
+        for user in self._employees:
+            if user.username == username:
+                return user
+        raise ValueError("There is no user with that username.")
 
     def get_route_by_id(self, route_id: int):
         for route in self._delivery_routes:
@@ -161,3 +155,9 @@ class ApplicationData:
                         f"Available: {available_trucks} trucks, Unavailable: {unavailable_trucks} trucks")
 
         return "\n".join(result)
+    
+    def login(self, user: User):
+        self._logged_user = user
+
+    def logout(self):
+        self._logged_user = None

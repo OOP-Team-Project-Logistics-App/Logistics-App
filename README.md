@@ -65,8 +65,8 @@ end
 ```
 Output:
 ```
-You are not logged in! Please login first!
-User Employee successfully logged in!
+User isn't logged in.
+Employee has logged in.
 Route 1: Brisbane -> Sydney -> Melbourne created.
 Route 2: Sydney -> Melbourne -> Adelaide created.
 Route 3: Perth -> Adelaide -> Melbourne -> Sydney -> Brisbane -> Darwin -> Alice_Springs created.
@@ -91,9 +91,9 @@ Route found for package 1:
 Route 1: Brisbane Feb 21st 22:00h -> Sydney Feb 22nd 08:26h -> Melbourne Feb 22nd 18:31h
 Route 2: Sydney Feb 21st 01:00h -> Melbourne Feb 21st 11:04h -> Adelaide Feb 21st 19:24h
 Package with id 1 was assigned to route 1.
-Information about Route 1: 
-Route 1: Brisbane Feb 21st 22:00h -> Sydney Feb 22nd 08:26h -> Melbourne Feb 22nd 18:31h 
-Truck ID: 1001, Model: Scania, Capacity: 42000kg, Max range: 8000km 
+Information about Route 1:
+Route 1: Brisbane Feb 21st 22:00h -> Sydney Feb 22nd 08:26h -> Melbourne Feb 22nd 18:31h
+Truck ID: 1001, Model: Scania, Capacity: 42000kg, Max range: 8000km
 Packages:
 Package ID 1:
 Sydney -> Melbourne
@@ -107,8 +107,8 @@ Package with id 1 was assigned to route 2.
 This route has no locations in the direction of Adelaide to Sydney
 Route 3 has no assigned truck
 Only supervisors and managers are allowed to view all unassigned packages!
-You logged out!
-User Supervisor successfully logged in!
+User logged out.
+Supervisor has logged in.
 Package ID: 2
 Start Location: Adelaide
 End Location: Sydney
@@ -132,19 +132,19 @@ Adelaide -> Sydney
 Weight: 6000kg
 Contact info: test@email_2.com
 Package 2 status is Pending.
-Current day is now Feb 25th 18:53h.
+Current day is now Feb 25th 20:52h.
 Package 2 status is Delivered.
 Package 3 status is En route.
-Only managers are allowed to view all delivery routes!
+Only managers are allowed to view all delivery routes in progress!
 Set off time cannot be more than 30 days in the future.
-Current day is now Feb 29th 18:53h.
+Current day is now Feb 29th 20:52h.
 Package 3 status is Delivered.
-Current day is now Mar 25th 18:53h.
+Current day is now Mar 25th 20:52h.
 Set off time cannot be in the past.
 Route 4: Adelaide -> Sydney -> Brisbane -> Darwin created.
-Only managers are allowed to view all delivery routes!
-You logged out!
-User Manager successfully logged in!
+Only managers are allowed to view all delivery routes in progress!
+User logged out.
+Manager has logged in.
 Information about in-progress routes:
 -------
 Scania:

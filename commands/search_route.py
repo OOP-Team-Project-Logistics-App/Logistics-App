@@ -7,9 +7,9 @@ class SearchRouteCommand(BaseCommand):
     def __init__(self, params, app_data: ApplicationData):
         super().__init__(params, app_data)
 
-    # Search for suitable routes when given the id of a package
+    #Search for suitable routes when given the id of a package
     def execute(self):
-        validate_login(self.app_data, requires_login=True)
+        validate_login(self.app_data, requires_login = True)
         package_id = self._params[0]
         package = self.app_data.get_package_by_id(package_id)
         found_routes = [f"Route found for package {package.id}:"]
