@@ -1,14 +1,15 @@
 from datetime import timedelta
+from commands.base.base_command import BaseCommand
 from commands.validators.validation_helpers import try_parse_float
 from core.application_data import ApplicationData
 from models.constants.package_status import PackageStatus
 from models.constants.truck_status import TruckStatus
 
 
-class UpdateCurrentDayCommand:
+class UpdateCurrentDayCommand(BaseCommand):
     def __init__(self, params: list, app_data: ApplicationData):
+        super().__init__(params, app_data)
         self.add_days = try_parse_float(params[0])
-        self.app_data = app_data
 
     def execute(self):
         self.update_truck_status()

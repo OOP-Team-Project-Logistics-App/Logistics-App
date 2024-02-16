@@ -30,6 +30,4 @@ class AssignPackageToRouteCommand(BaseCommand):
                         assigned_truck.add_package_weight(package)
                         return f"Package with id {package_id} was assigned to route {route_id}."
 
-        raise ValueError(
-            f"This route has no locations in the direction of {package_start_location} to {package_end_location}")
-
+        raise ValueError(f"This route has no locations in the direction of {package_start_location} to {package_end_location}")
