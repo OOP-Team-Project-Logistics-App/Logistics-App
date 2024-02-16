@@ -33,21 +33,25 @@ class CommandFactory_Should(unittest.TestCase):
         self.assertEqual(command.params[1:], ("Brisbane", "Sydney"))
         self.assertEqual(command.app_data, self.app_data)
 
+
     def test_command_createdeliveryroute_when_SetOffTimeInPast(self):
-        time_in_past = datetime.strftime(datetime.now() - timedelta(days = 1), "%m/%d/%H")
-        params = [time_in_past]
-        command = CreateDeliveryRouteCommand(params, self.app_data)
+        time_in_past = (datetime.now() - timedelta(days=1)).strftime("%m/%d/%H")
+
+        command = self.command_factory.create(f"createdeliveryroute {time_in_past} Brisbane Sydney Melbourne")
+
+
         with self.assertRaises(ValueError):
             command.execute()
-        self.assertTrue("Set off time cannot be in the past.")
 
     def test_command_createdeliveryroute_when_SetOffTimeTooFarInFuture(self):
-        time_in_future = datetime.strftime(datetime.now() + timedelta(days = 31), "%m/%d/%H")
-        params = [time_in_future]
-        command = CreateDeliveryRouteCommand(params, self.app_data)
+        time_in_future = (datetime.now() + timedelta(days=31)).strftime("%m/%d/%H")
+        # print("Testing with time in the future:", time_in_future)
+
+        command = self.command_factory.create(f"createdeliveryroute {time_in_future} Brisbane Sydney Melbourne")
+        # print("Command created successfully:", command)
+
         with self.assertRaises(ValueError):
             command.execute()
-        self.assertTrue("Set off time cannot be more than 30 days in the future.")
 
     def test_command_createdeliverypackage_whenValidParams(self):
         command = self.command_factory.create("createdeliverypackage Sydney Melbourne 100 test@email.com")
