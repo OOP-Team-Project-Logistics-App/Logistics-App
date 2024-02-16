@@ -1,7 +1,7 @@
 from core.application_data import ApplicationData
 
 
-class BaseCommand():
+class BaseCommand:
     def __init__(self, params: list, app_data: ApplicationData):
         self._params = params
         self._app_data = app_data
@@ -16,3 +16,4 @@ class BaseCommand():
 
     def execute(self):
         pass
+

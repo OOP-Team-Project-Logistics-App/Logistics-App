@@ -12,12 +12,6 @@ class User:
     PASSWORD_LEN_ERR = f'Password must be between {PASSWORD_LEN_MIN} and {PASSWORD_LEN_MAX} characters long!'
     PASSWORD_INVALID_SYMBOLS = 'Password contains invalid symbols!'
 
-    NORMAL_ROLE_VEHICLE_LIMIT = 5
-
-    NORMAL_USER_LIMIT_REACHED_ERR = f'You are not VIP and cannot add more than {NORMAL_ROLE_VEHICLE_LIMIT} vehicles!'
-    ADMIN_CANNOT_ADD_VEHICLES_ERR = 'You are an admin and therefore cannot add vehicles!'
-    YOU_ARE_NOT_THE_AUTHOR = 'You are not the author of the comment you are trying to remove!'
-    THE_VEHICLE_DOES_NOT_EXIT = 'The vehicle does not exist!'
     def __init__(self, username: str, password: str, job_title: JobTitle):
         self.username = username
         self.password = password
@@ -45,25 +39,40 @@ class User:
         return self._password
 
     @password.setter
-    def password(self, value):
-        if not (5 <= len(value) <= 30):
-            raise ValueError("Password must be between 5 and 30 characters long.")
-        if not all(char.isalnum() or char in "@*-_" for char in value):
-            raise ValueError("Password contains invalid symbols.")
-        self._password = value
+    def password(self, passw):
+        special_symbols = {'@', '*', '-', '_'}
+        if self.PASSWORD_LEN_MIN <= len(passw) <= self.PASSWORD_LEN_MAX:
+            if passw.isalnum():
+                self._password = passw
+            elif any(char in special_symbols for char in passw):
+                self._password = passw
+            else:
+                raise ValueError(self.PASSWORD_INVALID_SYMBOLS)
+        else:
+            raise ValueError(self.PASSWORD_LEN_ERR)
 
     @property
     def job_title(self):
         return self._job_title
     
-    @property
-    def is_employee(self):
-        return self._is_employee == JobTitle.EMPLOYEE
-    
-    @property
-    def is_supervisor(self):
-        return self._is_supervisor == JobTitle.SUPERVISOR
-    
-    @property
-    def is_manager(self):
-        return self._is_manager == JobTitle.MANAGER
+    # @property
+    # def is_employee(self):
+    #     if self._is_employee == JobTitle.EMPLOYEE:
+    #         return True
+    #     else:
+    #         return False
+    #
+    # @property
+    # def is_supervisor(self):
+    #     if self._is_supervisor == JobTitle.SUPERVISOR:
+    #         return True
+    #     else:
+    #         return False
+    #
+    # @property
+    # def is_manager(self):
+    #     if self._is_manager == JobTitle.MANAGER:
+    #         return True
+    #     else:
+    #         return False
+

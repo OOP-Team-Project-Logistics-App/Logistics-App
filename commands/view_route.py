@@ -1,5 +1,6 @@
 from commands.base.base_command import BaseCommand
 from core.application_data import ApplicationData
+from commands.validators.validation_helpers import validate_login
 
 
 class ViewRouteCommand(BaseCommand):
@@ -7,6 +8,7 @@ class ViewRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         self.route_id = self.params[0]
         route = self.app_data.get_route_by_id(self.route_id)
         truck = route.assigned_truck

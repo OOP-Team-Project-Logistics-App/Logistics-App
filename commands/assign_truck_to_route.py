@@ -1,6 +1,7 @@
 from commands.base.base_command import BaseCommand
 from commands.validators.validation_helpers import try_parse_int
 from core.application_data import ApplicationData
+from commands.validators.validation_helpers import validate_login
 
 
 class AssignTruckToRouteCommand(BaseCommand):
@@ -8,6 +9,7 @@ class AssignTruckToRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         self.route_id = try_parse_int(self.params[0])
         route = self.app_data.get_route_by_id(self.route_id)
         if route.assigned_truck:

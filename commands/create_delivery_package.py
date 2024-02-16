@@ -2,6 +2,7 @@ from core.application_data import ApplicationData
 from commands.base.base_command import BaseCommand
 from commands.validators.validation_helpers import try_parse_int
 from models.package import Package
+from commands.validators.validation_helpers import validate_login
 
 
 class CreateDeliveryPackageCommand(BaseCommand):
@@ -9,6 +10,7 @@ class CreateDeliveryPackageCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         start_location = self.params[0]
         end_location = self.params[1]
         weight = try_parse_int(self.params[2])

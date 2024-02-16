@@ -1,6 +1,6 @@
 from commands.base.base_command import BaseCommand
 from core.application_data import ApplicationData
-from datetime import datetime
+from commands.validators.validation_helpers import validate_login
 
 
 class PackageStatusCommand(BaseCommand):
@@ -8,6 +8,7 @@ class PackageStatusCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         package_id = self.params[0]
         current_time = self.app_data.current_day
 

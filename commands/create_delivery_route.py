@@ -3,6 +3,7 @@ from core.application_data import ApplicationData
 from models.constants.date_and_time_data import calculate_travel_time
 from models.route import Route
 from datetime import datetime, timedelta
+from commands.validators.validation_helpers import validate_login
 
 
 class CreateDeliveryRouteCommand(BaseCommand):
@@ -10,6 +11,7 @@ class CreateDeliveryRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         date_today = self.app_data.current_day
         set_off = self.params[0]
         set_off_time = datetime.strptime(f"2024-{set_off}", "%Y-%m/%d/%H")

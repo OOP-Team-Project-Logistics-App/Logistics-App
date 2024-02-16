@@ -1,5 +1,6 @@
 from commands.base.base_command import BaseCommand
 from core.application_data import ApplicationData
+from commands.validators.validation_helpers import validate_login
 
 
 class AssignPackageToRouteCommand(BaseCommand):
@@ -7,6 +8,7 @@ class AssignPackageToRouteCommand(BaseCommand):
         super().__init__(params, app_data)
 
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         package_id, route_id = self.params
         package = self.app_data.get_package_by_id(package_id)
         package_start_location = package.start_location

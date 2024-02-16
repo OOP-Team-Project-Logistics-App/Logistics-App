@@ -1,5 +1,6 @@
 from commands.base.base_command import BaseCommand
 from core.application_data import ApplicationData
+from commands.validators.validation_helpers import validate_login
 
 
 class SearchRouteCommand(BaseCommand):
@@ -8,6 +9,7 @@ class SearchRouteCommand(BaseCommand):
 
     # Search for suitable routes when given the id of a package
     def execute(self):
+        validate_login(self.app_data, requires_login=True)
         package_id = self._params[0]
         package = self.app_data.get_package_by_id(package_id)
         found_routes = [f"Route found for package {package.id}:"]

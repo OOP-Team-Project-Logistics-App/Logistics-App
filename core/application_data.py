@@ -6,6 +6,8 @@ from models.constants.truck_status import TruckStatus
 from models.route import Route
 from models.package import Package
 from models.truck import Truck
+from models.user import User
+from models.constants.job_title import JobTitle
 
 
 class ApplicationData:
@@ -14,6 +16,8 @@ class ApplicationData:
         self._delivery_packages: list[Package] = []
         self._trucks: list[Truck] = []
         self._current_day = datetime.now()
+        self._workers = []
+        self._logged_user = None
 
     @property
     def delivery_routes(self):
@@ -62,6 +66,40 @@ class ApplicationData:
         self._trucks.extend([Truck(id, "Scania", 42000, 8000) for id in range(1001, 1011)])
         self._trucks.extend([Truck(id, "Man", 37000, 10000) for id in range(1011, 1026)])
         self._trucks.extend([Truck(id, "Actros", 26000, 13000) for id in range(1026, 1041)])
+
+    def initialize_workers(self):
+        manager = User("Manager", "Mpassword", JobTitle.MANAGER)
+        self._workers.append(manager)
+
+        supervisor = User("Supervisor", "Spassword", JobTitle.SUPERVISOR)
+        self._workers.append(supervisor)
+
+        employee = User("Employee", "Epassword", JobTitle.EMPLOYEE)
+        self._workers.append(employee)
+
+    def find_user_by_username(self, username: str) -> User:
+        filtered = [user for user in self._workers if user.username == username]
+        if filtered == []:
+            raise ValueError(f'There is no user with username {username}!')
+
+        return filtered[0]
+
+    @property
+    def logged_in_user(self):
+        if self.has_logged_in_user:
+            return self._logged_user
+        else:
+            raise ValueError('There is no logged in user.')
+
+    @property
+    def has_logged_in_user(self):
+        return self._logged_user is not None
+
+    def login(self, user: User):
+        self._logged_user = user
+
+    def logout(self):
+        self._logged_user = None
 
     #Iterate through each truck, if both the range and the capacity of the truck satisfy the demands for the completion
     #of the new route, check if the truck has any assigned routes. If any routes are assigned, check if the set off time

@@ -11,8 +11,8 @@ from commands.view_unassigned_packages import ViewUnassignedPackages
 from errors.invalid_command import InvalidCommand
 from commands.update_current_day import UpdateCurrentDayCommand
 from commands.package_status import PackageStatusCommand
-
-
+from commands.login import LoginCommand
+from commands.logout import LogoutCommand
 class CommandFactory:
     def __init__(self, data):
         self._app_data = data
@@ -44,5 +44,8 @@ class CommandFactory:
             return ViewInProgressRoutesCommand(params, self._app_data)
         if cmd.lower() == "showavailabletrucks":
             return ShowAvailableTrucks(self._app_data)
-
+        if cmd.lower() == 'login':
+            return LoginCommand(params, self._app_data)
+        if cmd.lower() == 'logout':
+            return LogoutCommand(self._app_data)
         raise InvalidCommand(cmd)
