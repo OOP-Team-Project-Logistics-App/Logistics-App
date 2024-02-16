@@ -17,4 +17,4 @@ class ViewUnassignedPackages(BaseCommand):
         if logged_in_user.job_title == JobTitle.SUPERVISOR or logged_in_user.job_title == JobTitle.MANAGER:
             return self.app_data.view_unassigned_packages()
         else:
-            raise ValueError("Only supervisors and managers are allowed to execute this command.")
+            raise ValueError("Only supervisors and managers are allowed to view all unassigned packages!")

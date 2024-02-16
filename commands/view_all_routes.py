@@ -34,4 +34,4 @@ class ViewInProgressRoutesCommand(BaseCommand):
             return output_string
 
         else:
-            raise ValueError("Only managers are allowed to execute this command.")
+            raise ValueError("Only managers are allowed to view all delivery routes!")
