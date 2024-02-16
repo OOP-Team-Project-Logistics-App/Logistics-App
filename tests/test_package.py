@@ -15,7 +15,7 @@ class Package_Should(unittest.TestCase):
         self.contact_info = "test@test.com"
         self.package = Package(self.start_location, self.end_location, self.weight, self.contact_info)
 
-    def test_initializator_whenParamsAreValid(self):
+    def test_initializer_whenParamsAreValid(self):
         self.assertEqual(self.package.id, 1)
         self.assertEqual(self.package.start_location, self.start_location)
         self.assertEqual(self.package.end_location, self.end_location)
@@ -40,7 +40,7 @@ class Package_Should(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.package.end_location = "InvalidCity"
 
-    def test_initializator_raisesError_whenWeightIsNegative(self):
+    def test_initializer_raisesError_whenWeightIsNegative(self):
         with self.assertRaises(ValueError):
             self.package = Package(self.start_location, self.end_location, -5000, self.contact_info)
 

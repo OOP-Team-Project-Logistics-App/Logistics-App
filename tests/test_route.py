@@ -4,5 +4,6 @@ from models.route import Route
 
 
 class Route_Should(unittest.TestCase):
+
     def setUp(self):
         pass
