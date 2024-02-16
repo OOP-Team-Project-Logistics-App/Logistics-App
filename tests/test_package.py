@@ -32,21 +32,21 @@ class Package_Should(unittest.TestCase):
         self.assertEqual(package_2.id, 2)
         self.assertNotEqual(package_1.id, package_2.id)
 
-    def test_start_location_whenStartLocationIsInvalid(self):
+    def test_start_location_raisesError_whenStartLocationIsInvalid(self):
         with self.assertRaises(ValueError):
-            self.package.start_location = "TestCity"
+            self.package.start_location = "InvalidCity"
 
-    def test_end_location_whenEndLocationIsInvalid(self):
+    def test_end_location_raisesError_whenEndLocationIsInvalid(self):
         with self.assertRaises(ValueError):
-            self.package.end_location = self.start_location
+            self.package.end_location = "InvalidCity"
 
-    def test_initializator_whenWeightIsNegative(self):
+    def test_initializator_raisesError_whenWeightIsNegative(self):
         with self.assertRaises(ValueError):
-            self.package = Package(self.start_location, self.end_location, -500, self.contact_info)
+            self.package = Package(self.start_location, self.end_location, -5000, self.contact_info)
 
     def test_contact_info_whenContactInfoIsInvalid(self):
         with self.assertRaises(ValueError):
-            self.package.contact_info = "testemail"
+            self.package.contact_info = "invalidemail"
 
     def test_update_package_status_whenRouteAssignedOrNotAssigned(self):
         self.package.update_package_status(datetime.now())
@@ -59,6 +59,21 @@ class Package_Should(unittest.TestCase):
         self.package.update_package_status(datetime.now())
         self.assertEqual(self.package.status, PackageStatus.EN_ROUTE)
 
-    def test_update_package_status_whenNotADatetimeObject(self):
+    def test_update_package_status_raisesError_whenNotADatetimeObject(self):
         with self.assertRaises(ValueError):
             self.package.update_package_status("Not a datetime object")
+
+    def test_package_info_returnsCorrectlyFormattedString(self):
+        expected_output = f"Package ID {self.package._id}:\n" \
+                          f"{self.package.start_location} -> {self.package.end_location}\n" \
+                          f"Weight: {self.package.weight}kg\n" \
+                          f"Contact info: {self.package._contact_info}"
+        self.assertEqual(self.package.package_info(), expected_output)
+
+    def test_str_method_returnsCorrectlyFormattedString(self):
+        expected_output = f"Package with id {self.package._id} created.\n" \
+                          f"-- Accepted in city: {self.package.start_location} --\n" \
+                          f"-- Delivery to: {self.package.end_location} --\n" \
+                          f"-- Weight: {self.package.weight}kg --\n" \
+                          f"-- Contact Info: {self.package._contact_info} --"
+        self.assertEqual(str(self.package), expected_output)
