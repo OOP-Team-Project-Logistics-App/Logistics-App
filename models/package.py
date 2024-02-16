@@ -1,3 +1,4 @@
+from datetime import datetime
 from models.constants.distance_data import Distance
 from models.constants.package_status import PackageStatus
 from models.route import Route
@@ -77,7 +78,9 @@ class Package:
     #locations and their respective arrival times. If there's a match with the package's start location the route's location,
     #that location's arrival becomes the package's departure time. Do the same for the package's end location. The status
     #of the package changes depending on its progress through the route depending on the current day.
-    def update_package_status(self, current_time):
+    def update_package_status(self, current_time: datetime):
+        if not isinstance(current_time, datetime):
+            raise ValueError("Current time must be a datetime object.")
         if self._package_assigned_route is None:
             self._status = PackageStatus.NOT_ASSIGNED
         else:

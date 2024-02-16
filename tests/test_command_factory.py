@@ -5,7 +5,6 @@ from commands.create_delivery_route import CreateDeliveryRouteCommand
 from commands.update_current_day import UpdateCurrentDayCommand
 from core.application_data import ApplicationData
 from core.command_factory import CommandFactory
-from errors.application_error import ApplicationError
 from errors.invalid_command import InvalidCommand
 
 

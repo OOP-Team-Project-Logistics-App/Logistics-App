@@ -28,7 +28,6 @@ updateday 2
 packagestatus 1
 packagestatus 2
 viewallroutes
-updateday 2
 packagestatus 3
 packagestatus 4 
 showavailabletrucks

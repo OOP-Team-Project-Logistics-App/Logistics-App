@@ -8,12 +8,12 @@ class Engine:
 
     def start(self):
         output = []
-        self.app_data.load_system_state()
+        # self.app_data.load_system_state() TEMPORARY OUT OF USE SO WE CAN TEST CODE
         while True:
             try:
                 input_line = input()
                 if input_line.lower() == "end":
-                    self.app_data.save_system_state()
+                    # self.app_data.save_system_state() TEMPORARY OUT OF USE SO WE CAN TEST CODE
                     break
                 command = self._command_factory.create(input_line)
                 output.append(command.execute())
