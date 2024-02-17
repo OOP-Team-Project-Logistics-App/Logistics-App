@@ -24,7 +24,7 @@ class Package_Should(unittest.TestCase):
         self.assertIsNone(self.package.package_assigned_route)
         self.assertEqual(self.package.status, PackageStatus.NOT_ASSIGNED)
 
-    def test_package_idcounter_whenIsValid(self):
+    def test_package_id_counter_whenIsValid(self):
         Package.id_count = 0
         package_1 = Package("Brisbane", "Sydney", 5000, "test1@test.com")
         self.assertEqual(package_1.id, 1)
