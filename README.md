@@ -14,7 +14,8 @@ Teamwork in Python OOP Module in Telerik Academy
 
 ## Features
 
-**Note**: Before testing the features, ensure that you are logged into one of the three accounts: employee, supervisor, or manager. Each account has different permissions, allowing you to thoroughly test the functionality. After testing with one account, make sure to log out before logging into another account.
+> [!NOTE]
+> Before testing the features, ensure that you are logged into one of the three accounts: employee, supervisor, or manager. Each account has different permissions, allowing you to thoroughly test the functionality. After testing with one account, make sure to log out before logging into another account.
 
 **Create delivery route** - creates a delivery route with an unique id and at least two locations. It takes departure time in the format of month/day/hour and locations.
 ```py
