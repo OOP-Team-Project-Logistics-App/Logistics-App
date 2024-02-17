@@ -1,5 +1,6 @@
 import unittest
 from datetime import datetime, timedelta
+from models.constants.date_and_time_data import format_date
 from models.constants.distance_data import Distance
 from models.package import Package
 from models.route import Route
@@ -10,7 +11,7 @@ class Route_Should(unittest.TestCase):
 
     def setUp(self):
         self.set_off_time = datetime.now()
-        self.locations = {"Brisbane": 500, "Sydney": 1000}
+        self.locations = {"Brisbane": self.set_off_time + timedelta(hours=1), "Sydney": self.set_off_time + timedelta(hours=10)}
         self.route = Route(self.set_off_time, self.locations)
         self.package_1 = Package("Brisbane", "Sydney", 500, "test@email.com")
         self.package_2 = Package("Sydney", "Melbourne", 500, "test_1@email.com")
@@ -67,3 +68,11 @@ class Route_Should(unittest.TestCase):
         self.route._locations = {"Brisbane": 1, "Sydney": 2, "Melbourne": 3}
         self.assertFalse(self.route.check_if_route_completed(2))
         self.assertTrue(self.route.check_if_route_completed(4))
+
+    def test_route_info_returnsCorrectlyFormattedString(self):
+        expected_output = f"Route {self.route._id}: Brisbane {format_date(self.locations['Brisbane'])} -> Sydney {format_date(self.locations['Sydney'])}"
+        self.assertEqual(self.route.route_info(), expected_output)
+
+    def test_str_method_returnsCorrectlyFormattedString(self):
+        expected_output = f"Route {self.route._id}: Brisbane -> Sydney created."
+        self.assertEqual(str(self.route), expected_output)
