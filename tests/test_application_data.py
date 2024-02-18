@@ -50,20 +50,36 @@ class ApplicationData_Should(unittest.TestCase):
         truck = self.app_data.find_suitable_truck(self.route)
         self.assertIsInstance(truck, Truck)
 
+    def test_find_suitable_truck_raisesError_whenNoTrucksAvailable(self):
+        with self.assertRaises(ValueError):
+            self.app_data.find_suitable_truck(self.route)
+
     def test_find_user_whenRetrievesUserByUsername(self):
         self.app_data.initialize_employees()
         user = self.app_data.find_user("Employee")
         self.assertIsInstance(user, User)
+
+    def test_find_user_raisesError_whenUserDoesNotExist(self):
+        with self.assertRaises(ValueError):
+            self.app_data.find_user("InvalidUser")
 
     def test_get_route_by_id_whenRetrievesRouteById(self):
         self.app_data.add_route(self.route)
         route_return = self.app_data.get_route_by_id(self.route.id)
         self.assertEqual(route_return, self.route)
 
+    def test_get_route_by_id_raisesError_whenRouteIsInvalid(self):
+        with self.assertRaises(ValueError):
+            self.app_data.get_route_by_id("InvalidRoute")
+
     def test_get_package_by_id_whenRetrievesPackageById(self):
         self.app_data.add_package(self.package)
         package_return = self.app_data.get_package_by_id(self.package.id)
         self.assertEqual(package_return, self.package)
+
+    def test_get_package_by_id_raisesError_whenPackageIsInvalid(self):
+        with self.assertRaises(ValueError):
+            self.app_data.get_package_by_id("InvalidPackage")
 
     def test_search_route_whenSearchesForRouteSuccessfully(self):
         self.app_data.add_route(self.route)
@@ -84,6 +100,10 @@ class ApplicationData_Should(unittest.TestCase):
         current_day = self.app_data.current_day
         self.app_data.update_current_day(1)
         self.assertEqual(self.app_data.current_day, current_day + timedelta(days = 1))
+
+    def test_update_current_day_raisesError_whenDaysAreInThePast(self):
+        with self.assertRaises(ValueError):
+            self.app_data.update_current_day(-1)
 
     def test_show_available_trucks_returnsCorrectlyFormattedString(self):
         truck_return_string = self.app_data.show_available_trucks()
