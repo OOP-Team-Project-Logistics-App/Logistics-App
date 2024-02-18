@@ -11,7 +11,7 @@ class Route_Should(unittest.TestCase):
 
     def setUp(self):
         self.set_off_time = datetime.now()
-        self.locations = {"Brisbane": self.set_off_time + timedelta(hours=1), "Sydney": self.set_off_time + timedelta(hours=10)}
+        self.locations = {"Brisbane": self.set_off_time + timedelta(hours = 1), "Sydney": self.set_off_time + timedelta(hours = 10)}
         self.route = Route(self.set_off_time, self.locations)
         self.package_1 = Package("Brisbane", "Sydney", 500, "test@email.com")
         self.package_2 = Package("Sydney", "Melbourne", 500, "test_1@email.com")
