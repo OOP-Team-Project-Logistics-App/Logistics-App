@@ -42,7 +42,7 @@ class Truck:
     def assign(self, time_period):
         self._status = TruckStatus.UNAVAILABLE
         self._assigned_time_periods.append(time_period)
-        self._remaining_capacity = self._capacity
+        #self._remaining_capacity = self._capacity
 
     def add_package_weight(self, package):
         if self._remaining_capacity >= package.weight:
