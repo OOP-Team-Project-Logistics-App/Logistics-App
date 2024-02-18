@@ -16,13 +16,16 @@ class AssignPackageToRouteCommand(BaseCommand):
         route = self.app_data.get_route_by_id(route_id)
         route_locations = list(route.locations.keys())
         assigned_truck = route.assigned_truck
-        # Check if the route has an assigned truck
+        #Check if the route has an assigned truck
         if assigned_truck is None:
             raise ValueError(f"Route {route_id} has no assigned truck")
-        # Check if the package weight doesn't exceed the truck's capacity minus the assigned packages to that route
+        #Check if the package weight doesn't exceed the truck's capacity minus the assigned packages to that route
         if package.weight > assigned_truck.remaining_capacity:
             raise ValueError("Package weight exceeds assigned truck's remaining capacity.")
 
+        #Iterate through route locations to find a match for package start location,
+        #then search for package end location within the remaining route locations.
+        #If found, assign the package to the route and update relevant package and route data.
         for location in route_locations:
             if package_start_location == location:
                 for location in route_locations[(route_locations.index(package_start_location)):]:

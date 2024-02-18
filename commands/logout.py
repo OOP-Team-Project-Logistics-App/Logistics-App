@@ -12,4 +12,3 @@ class LogoutCommand:
         self._app_data.logout()
 
         return "User logged out."
-

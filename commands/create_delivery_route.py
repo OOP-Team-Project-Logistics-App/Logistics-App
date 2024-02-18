@@ -20,6 +20,8 @@ class CreateDeliveryRouteCommand(BaseCommand):
         if date_today + timedelta(days = 30) < set_off_time:
             raise ValueError("Set off time cannot be more than 30 days in the future.")
         
+        #Calculates the arrival time for each location along the route, based on the set_off_time and the travel time
+        #between consecutive locations, then creates a new route object with these calculated arrival times.
         locations = self.params[1:]
         dict_locations = {}
         start_location = locations[0]
