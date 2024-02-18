@@ -60,13 +60,3 @@ class TruckShould(unittest.TestCase):
     def test_strReturnCorrectTruckFormat(self):
         expected = "ID: 1040, Model: Actros, Capacity: 26000kg, Max range: 13000km"
         self.assertEqual(expected, str(self.truck3))
-
-
-
-
-
-
-
-
-
-
