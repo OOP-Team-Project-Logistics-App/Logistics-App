@@ -134,14 +134,14 @@ assignpackagetoroute 2 3
 assignpackagetoroute 3 3
 getpackageinfo 2
 packagestatus 2
-updateday 9
+updateday 1.5
 packagestatus 2
 packagestatus 3
 viewallroutes
 createdeliveryroute 4/21/9 Adelaide Sydney Brisbane Darwin
-updateday 4
+updateday 1
 packagestatus 3
-updateday 25
+updateday 2
 createdeliveryroute 3/21/6 Brisbane Sydney Melbourne
 createdeliveryroute 4/21/9 Adelaide Sydney Brisbane Darwin
 viewallroutes
