@@ -102,11 +102,9 @@ updateday 2
 viewallroutes
 ```
 
-## **TEMPORARY INPUT AND OUTPUT FOR TESTS**
+## Example input and expected output
 
-To create routes, assign trucks and packages by ids to them, you must be logged in first. Possible package routes are shown through the "searchroute" command so we can get information about which route is most suitable for our package delivery. Shows information about routes through the "viewroute" command. To use the "viewallroutes" command you must be logged in a manager account and to use the "viewunassignedpackages" you must be logged in a supervisor or manager account.
-
-**Input:**
+**Example input:**
 ```
 createdeliveryroute 2/21/22 Brisbane Sydney Melbourne
 login Employee Epassword
@@ -153,7 +151,7 @@ viewallroutes
 showavailabletrucks
 end
 ```
-**Output:**
+**Expected output:**
 ```
 User isn't logged in.
 Employee has logged in.
@@ -246,3 +244,8 @@ Available: 15 trucks, Unavailable: 0 trucks
 Actros:
 Available: 15 trucks, Unavailable: 0 trucks
 ```
+## Optional future implementations:
+
+- **Truck history** - a comprehensive record-keeping journal of each route undertaken by a certain truck.
+- **Fuel calculation** - a method to calculate the fuel consumption based on factors like distance and weight. It will show information about when the truck has to be refueled.
+- **Resting time management** - it will track automatically driving time and enforce the mandatory resting periods.
