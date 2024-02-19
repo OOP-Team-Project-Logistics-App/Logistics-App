@@ -7,7 +7,6 @@ class Engine:
         self.app_data = self._command_factory._app_data
 
     def start(self):
-        output = []
         self.app_data.load_system_state()
         while True:
             try:
@@ -16,8 +15,6 @@ class Engine:
                     self.app_data.save_system_state()
                     break
                 command = self._command_factory.create(input_line)
-                output.append(command.execute())
+                print(command.execute())
             except ValueError as e:
-                output.append(e.args[0])
-
-        print("\n".join(output))
+                print(e)
